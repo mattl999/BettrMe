@@ -1,0 +1,55 @@
+
+#side-btn-div{
+    grid-row-start: 2;
+  
+    padding: 0% 1% 8% 5%;
+    
+}
+.side-goal-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height:4vh;
+    border-bottom: 1px solid black;
+    padding-left: .5vw;
+  }
+  #edit{
+      display: inline;
+      position: relative;
+      top: .8vh
+  }
+
+  #delete{
+    display: inline;
+    position: relative;
+    top: .8vh;
+    margin-left: .5vh;
+
+}
+  .side-goal-links {
+    text-decoration: none;
+    font-size: 1.3vh;
+    margin:0 0.2vh;
+    
+  }
+  #side-goal-list{
+    grid-row-start: 1;  
+    padding:1.4vw;
+    display: flex;
+    flex-direction: column;
+   
+    
+    font-size: 1.7vh;
+  }
+.modal-btn {
+    width:95%;
+    height: 95%;
+    margin:0;
+    background-color: green;
+    border-radius: 4vh;
+    border: 2px solid #bbb;
+    font-size: 2vw;
+    color:white;
+    font-family: 'Bebas Neue', cursive;
+    cursor: pointer;
+}

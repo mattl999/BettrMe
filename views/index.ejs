@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+    </style>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+    </style>
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+    </style>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@200&display=swap');
+      </style>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        </style>
+        
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/calendar.css" />
+    <link rel="stylesheet" href="/stylesheets/modal.css">
+    <link rel="stylesheet" href="/stylesheets/sidebar.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="/javascripts/frontEnd.js"></script>
+  </head>
+  <body>
+
+    <!-- navbar stuff -->
+    <nav class= "top-bar">
+      <h1 class="title">BettrMe</h1>
+      
+        <% if (user) { %>
+          <div class='logout'><a class = 'login' href="/logout"><i class="material-icons left"></i>Log Out</a> <img class= 'dp' src="<%= user.picture %>" alt=""></div>
+        <% } else { %>
+          <a class = "login" href="/auth/google"><i class="material-icons left"></i>Login</a>
+        <% } %>
+        
+      
+    </nav>
+    <nav class="second">
+      <div class="time">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="clock" viewBox="0 0 16 16">
+        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+      </svg>
+      <div id="currentTime"></div>
+    </div>
+    <div class='top-message'>Good <div class="time-word"> Morning </div>
+      <%= user.name %> !
+    </div>
+   <div class="progress-section-container"> <div class = 'progress-container'><div class='progress-percent'>10%</div><div class='progress-meter'><div class="progress-fill"> </div></div></div></div>
+    </nav>
+
+    <!-- non navbar content starts -->
+   <div class="main-wrapper">
+
+    <!-- sidebar stuff -->
+     <div class="sidebar">
+<div id="side-goal-list">
+  
+  <% user.today.forEach(function(g) { %>
+    <div class="side-goal-container">
+      <div class="side-goal-activity">
+      <p> <%= g.activity %></p>
+    </div>
+    <div class="side-goal-links">
+      <div id="edit">Edit</div>
+      <div id="delete">Delete</div>
+    </div>
+    </div>
+    <% }); %>
+</div>
+<div id= side-btn-div>
+<button class="modal-btn">Create New Goal</button>
+</div>
+     </div>
+
+     <!-- calendar -->
+     <div class="calendar-wrapper">
+        <div class="calendar">
+          <div class="calendar-top">
+            Insert Date here
+          </div>
+
+          <div class="calendar-body">
+            <div class="calendar-side" id="calendar-left">
+
+              <svg class="arrow" id="arrow-left"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+              </svg>
+            </div>
+              <div class="goal-list">
+                <% let n = -1 %>
+                <% user.today.forEach(function(g) { %>
+                  <% n++ %>
+                  <div class="goal-container">
+                    <button type="button" class="checkbox" id=" <%= n %>" onclick="toggleComplete(id)">
+                      <% if(g.completed) { %>
+                        <img class = 'checkmark' src='images/checkmark 3.png'>
+                         <% } %>
+                      </button>
+                   
+
+                    <p> <%= g.activity %></p>
+                  </div>
+                  <% }); %>
+              </div>
+            
+            <div class="calendar-side" id="calendar-right">
+
+            <svg class="arrow" id="arrow-right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </div>
+
+          </div>
+        </div>
+     </div>
+
+     <!-- quote section -->
+     <div class="quote">
+      <p class="quote-text"> We cannot solve problems with the kind of thinking we employed when we came up with them </p> 
+      <p class="author">— Albert Einstein </p>
+     </div>
+   </div>
+
+   <!-- modal create -->
+   <div class="modal-bg">
+     <div class="modal">
+       <form action="/" method="post">
+      <h2>Enter Your New Goal</h2>
+       <label for="goal">Goal: </label>
+       <input type="text" name="activity">
+       <button class="submit" type="submit">Submit</button>
+       <div class></div>
+       <div class="modal-close">
+         <span >x</span>
+        </form>
+        </div>
+
+     </div>
+   </div>
+   <div class="modal-bg">
+    <div class="modal">
+      <form action="/" method="post">
+     <h2>Enter Your New Goal</h2>
+      <label for="goal">Goal: </label>
+      <input type="text" name="activity">
+      <button class="submit" type="submit">Submit</button>
+      <div class></div>
+      <div class="modal-close">
+        <span >x</span>
+       </form>
+       </div>
+
+    </div>
+  </div>
+
+  </body>
+</html>
