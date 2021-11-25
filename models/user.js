@@ -5,9 +5,10 @@ const goalSchema = new Schema(
   {
     activity: {
       type: String,
-      
+       
     },
-  completed: false,
+  completed:Boolean,
+      
 },
   {
     timestamps: true,

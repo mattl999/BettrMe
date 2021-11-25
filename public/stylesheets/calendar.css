@@ -59,13 +59,13 @@
     font-size: 4vh;
   }
   .checkbox{
-    position: absolute;
+ 
     height: 3vh;
     width:3vh;
     border: .5vh solid #777;
     border-radius: 1px;
     margin: 3vh;
-    overflow: hidden;
+    
     z-index: 0;
   }
   .checkbox-container{

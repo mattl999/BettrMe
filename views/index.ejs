@@ -96,16 +96,15 @@
               <div class="goal-list">
                 <% let n = -1 %>
                 <% user.today.forEach(function(g, i) { %>
-                  <% n++ %>
+                  
                   <div class="goal-container">
-                      <form class=checkbox-container action="/<%= g.id %>?_method=PUT" method="POST">
-
-                    <button type="submit" class="checkbox" >
+                      
+                    <button onclick="toggleComplete(event)" data-id="<%= g.id %>" queryUser='<%= user.id %>' class="checkbox" >
                       <% if(g.completed) { %>
                         <img class = 'checkmark' src='images/checkmark 3.png'>
                          <% } %>
                       </button>
-                      </form>
+                      
                    
 
                     <p> <%= g.activity %></p>

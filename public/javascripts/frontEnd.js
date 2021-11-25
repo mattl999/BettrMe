@@ -199,10 +199,19 @@ async function deleteObject(event){
  hideEditModal()
  // $.put('/goals/'+g, {activity:activity, id: g})
  }
+ async function toggleComplete(event){
+  u = event.target.getAttribute("queryUser"); 
+  g = event.target.getAttribute("data-id")
+  console.log(u)
+  // console.log(u);
+  console.log('/goals/toggle/' + g +'?_method=PUT', {user: u})
+  axios.post('/goals/toggle/' + g +'?_method=PUT', {user: u})
+  // axios.post('/goals/' + g +'toggle?_method=PUT', {user: u})
+ }
+
 
 
 editModalClose.addEventListener("click", hideEditModal);
-
 rightArrow.addEventListener("click", nextDay);
 leftArrow.addEventListener("click", prevDay);
 modalBtn.addEventListener("click", showModal);

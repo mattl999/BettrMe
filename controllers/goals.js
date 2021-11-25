@@ -22,24 +22,7 @@ function create(req, res) {
     res.redirect("/");
   });
 }
-function toggle(req, res) {
-  console.log("toggle req.params.id", req.params.id);
-  console.log("toggle req.user", req.user);
-  function findGoal(goal) {
-    return goal.id == req.params.id;
-  }
-  // req.user.today.findGoal()
-  req.user.today.find(function (findGoal) {
-    req.params.id,
-      function (err, goal) {
-        console.log(goal);
-        res.redirect("/");
-      };
-  });
-}
-function getOne(id) {
-  return skills.find((skill) => skill.id === parseInt(id));
-}
+
 
 
 // function submitEdit(req, res) {
@@ -55,11 +38,33 @@ function getOne(id) {
 //     });
 //   });
 // }
+
+async function toggle(req, res) {
+  console.log("REQ.BODY------->", req.body);
+  User.findById(req.body.user).exec(function (err, obj) {
+    
+    // console.log("obj", obj.today);
+    let focus = obj.today.find(function (goal){
+        return goal.id === req.params.id})
+    if(focus.completed){
+      focus.completed = false;
+    } 
+    else{
+      focus.completed = true;
+    }
+      console.log(obj.today);
+      
+      obj.save(function (err) {
+      if (err) return console.log(err);
+      return;
+    });
+    });
+}
 async function submitEdit(req, res) {
     console.log("REQ.BODY------->", req.body);
   User.findById(req.body.user).exec(function (err, obj) {
-    console.log("I need this ---->", req.params.id);
-    console.log("obj", obj.today);
+    
+    // console.log("obj", obj.today);
     let focus = obj.today.find(function (goal){
         return goal.id === req.params.id})
     focus.activity = req.body.activity;

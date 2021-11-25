@@ -12,6 +12,8 @@ router.post("/", goalCtrl.create);
 router.put('/:id', goalCtrl.toggle);
 router.put('/goals/:id',goalCtrl.submitEdit)
 router.delete('/goals/:id',goalCtrl.deleteGoal)
+router.put('/goals/toggle/:id',goalCtrl.toggle)
+
 
 //Oauth Routes
 router.get(
