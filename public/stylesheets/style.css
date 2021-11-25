@@ -67,8 +67,11 @@ h1 {
 }
 .quote-text {
   font-family: 'Bebas Neue', cursive;
-  font-size: 2vw;
+  font-size: 2.4vw;
   margin:0;
+  max-width: 25vw;
+  text-align:inherit;
+ 
 }
 .author {
   font-family: 'Bebas Neue', cursive;
