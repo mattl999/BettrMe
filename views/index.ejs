@@ -21,8 +21,10 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="/stylesheets/calendar.css" />
     <link rel="stylesheet" href="/stylesheets/modal.css">
+    <link rel="stylesheet" href="/stylesheets/editModal.css">
     <link rel="stylesheet" href="/stylesheets/sidebar.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="/javascripts/frontEnd.js"></script>
   </head>
   <body>
@@ -66,8 +68,8 @@
       <p> <%= g.activity %></p>
     </div>
     <div class="side-goal-links">
-      <div id="edit">Edit</div>
-      <div id="delete">Delete</div>
+      <a onclick= "showEditModal(event)" data-activity-id="<%= g.activity %>" data-id="<%= g.id %>" class="edit">Edit</a>
+     
     </div>
     </div>
     <% }); %>
@@ -93,14 +95,17 @@
             </div>
               <div class="goal-list">
                 <% let n = -1 %>
-                <% user.today.forEach(function(g) { %>
+                <% user.today.forEach(function(g, i) { %>
                   <% n++ %>
                   <div class="goal-container">
-                    <button type="button" class="checkbox" id=" <%= n %>" onclick="toggleComplete(id)">
+                      <form class=checkbox-container action="/<%= g.id %>?_method=PUT" method="POST">
+
+                    <button type="submit" class="checkbox" >
                       <% if(g.completed) { %>
                         <img class = 'checkmark' src='images/checkmark 3.png'>
                          <% } %>
                       </button>
+                      </form>
                    
 
                     <p> <%= g.activity %></p>
@@ -127,11 +132,11 @@
 
    <!-- modal create -->
    <div class="modal-bg">
-     <div class="modal">
+     <div class="modal"> 
        <form action="/" method="post">
       <h2>Enter Your New Goal</h2>
        <label for="goal">Goal: </label>
-       <input type="text" name="activity">
+       <input id="modal-input" type="text" name="activity">
        <button class="submit" type="submit">Submit</button>
        <div class></div>
        <div class="modal-close">
@@ -140,19 +145,26 @@
         </div>
 
      </div>
+
+     <!-- edit modal -->
    </div>
-   <div class="modal-bg">
-    <div class="modal">
-      <form action="/" method="post">
-     <h2>Enter Your New Goal</h2>
+   <div class="edit-modal-bg">
+    <div class="edit-modal">
+     <div class="edit-info-container">
+     <h2>Edit Goal</h2>
       <label for="goal">Goal: </label>
-      <input type="text" name="activity">
-      <button class="submit" type="submit">Submit</button>
-      <div class></div>
-      <div class="modal-close">
+      
+      <input id="edit-modal-input" type="text" name="activity">
+      <div class="edit-modal-close">
         <span >x</span>
-       </form>
        </div>
+      </div>
+      <div class="edit-btn-container">
+      <button onclick ="deleteObject(event)" queryUser= "<%= user.id %>"  class="delete edit-submit">Delete</button>
+      <button onclick ="confirmEdit(event)" queryUser= "<%= user.id %>"  class="edit-submit">Edit</button>
+    </div>
+      
+      
 
     </div>
   </div>

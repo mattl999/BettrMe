@@ -5,7 +5,7 @@ const goalSchema = new Schema(
   {
     activity: {
       type: String,
-      required: true,
+      
     },
   completed: false,
 },

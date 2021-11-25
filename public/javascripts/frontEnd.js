@@ -5,21 +5,28 @@
 
 //   useUnifiedTopology: true,
 // });
+// var methodOverride = require("method-override");
+// app.use(methodOverride('_method')); 
+
 var script = document.createElement('script');
 script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
 script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 
-
+const editModalInput = document.getElementById("edit-modal-input")
 const modalBtn = document.querySelector(".modal-btn");
 const modalBg = document.querySelector(".modal-bg");
 const modalClose = document.querySelector(".modal-close");
+const editModalBtn = document.querySelector(".edit-modal-btn");
+const editModalBg = document.querySelector(".edit-modal-bg");
+const editModalClose = document.querySelector(".edit-modal-close");
 const time = document.querySelector(".time");
 const dateSlot = document.querySelector(".calendar-top");
 const rightArrow = document.getElementById("calendar-right");
 const leftArrow = document.getElementById("calendar-left");
 const arrows = document.querySelectorAll(".calendar-side");
-const timeWord = document.querySelector(".time-word")
+const timeWord = document.querySelector(".time-word");
+const editBtn = document.querySelector(".edit")
 // const checkBox = document.querySelectorAll(".checkbox");
 
 // checkBox.addEventListener("click", toggleComplete);
@@ -27,18 +34,18 @@ const timeWord = document.querySelector(".time-word")
 //   $(this).addClass('checked');
 
 // })
-async function toggleComplete(id){
-  console.log(id)
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+// async function toggleComplete(id){
+//   console.log(id)
+//   var xhttp = new XMLHttpRequest();
+//   xhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
        
-        console.log("hi")
-    }
-    xhttp.open("POST", "../routes/toggle", true);
-  xhttp.send();
-  }
-}
+//         console.log("hi")
+//     }
+//     xhttp.open("POST", "../routes/toggle", true);
+//   xhttp.send();
+//   }
+// }
 // $.post( url [, data ] [, success ] [, dataType ] )
 
 let v = 0;
@@ -145,12 +152,56 @@ function showModal(evt) {
 }
 function hideModal(evt) {
   modalBg.classList.remove("bg-active");
+  
 }
+function hideEditModal(evt) {
+  editModalBg.classList.remove("bg-active");
+}
+let g = ''
+let activity = ''
+let u = '';
+
+function showEditModal(evt) {
+  console.log("clicked");
+  editModalBg.classList.add("bg-active")
+  g = evt.target.getAttribute("data-id");
+  console.log(g);
+  activity = evt.target.getAttribute("data-activity-id");
+  
+  editModalInput.value = activity;
+}
+function _ajax_request(url, data, callback, method) {
+  return jQuery.ajax({
+      url: url,
+      type: method,
+      data: data,
+      success: callback
+  });
+}
+jQuery.extend({
+  put: function(url, data, callback) {
+      return _ajax_request(url, data, callback, 'PUT');
+}});  
+
+async function confirmEdit(event){
+ u = event.target.getAttribute("queryUser");  
+ activity = editModalInput.value
+ console.log("asdfasdfasdfa",u);
+axios.post('/goals/' + g +'?_method=PUT', {activity:activity, user: u})
+// $.put('/goals/'+g, {activity:activity, id: g})
+hideEditModal()
+}
+async function deleteObject(event){
+  u = event.target.getAttribute("queryUser");  
+ 
+  console.log("asdfasdfasdfa",u);
+ axios.post('/goals/' + g +'?_method=DELETE', {user: u})
+ hideEditModal()
+ // $.put('/goals/'+g, {activity:activity, id: g})
+ }
 
 
-
-
-
+editModalClose.addEventListener("click", hideEditModal);
 
 rightArrow.addEventListener("click", nextDay);
 leftArrow.addEventListener("click", prevDay);

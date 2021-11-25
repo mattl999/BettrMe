@@ -6,7 +6,12 @@ const goalCtrl = require("../controllers/goals");
 /* GET home page. */
 router.get("/", isLoggedIn, goalCtrl.index);
 
+//functionality Routes
+
 router.post("/", goalCtrl.create);
+router.put('/:id', goalCtrl.toggle);
+router.put('/goals/:id',goalCtrl.submitEdit)
+router.delete('/goals/:id',goalCtrl.deleteGoal)
 
 //Oauth Routes
 router.get(
@@ -27,7 +32,7 @@ router.get('/logout', function(req, res){
   });
 
   
-router.post('/toggle', goalCtrl.toggle);
+// router.post('/toggle', goalCtrl.toggle);
 
   function isLoggedIn(req, res, next) {
     if ( req.isAuthenticated() ) return next();

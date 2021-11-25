@@ -53,3 +53,9 @@
     font-family: 'Bebas Neue', cursive;
     cursor: pointer;
 }
+.edit{
+  cursor:pointer;
+  text-decoration: underline;
+  position: relative;
+  top:1vh;
+}
