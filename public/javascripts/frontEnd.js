@@ -6,14 +6,14 @@
 //   useUnifiedTopology: true,
 // });
 // var methodOverride = require("method-override");
-// app.use(methodOverride('_method')); 
+// app.use(methodOverride('_method'));
 
-var script = document.createElement('script');
-script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
-script.type = 'text/javascript';
-document.getElementsByTagName('head')[0].appendChild(script);
+var script = document.createElement("script");
+script.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+script.type = "text/javascript";
+document.getElementsByTagName("head")[0].appendChild(script);
 
-const editModalInput = document.getElementById("edit-modal-input")
+const editModalInput = document.getElementById("edit-modal-input");
 const modalBtn = document.querySelector(".modal-btn");
 const modalBg = document.querySelector(".modal-bg");
 const modalClose = document.querySelector(".modal-close");
@@ -26,7 +26,8 @@ const rightArrow = document.getElementById("calendar-right");
 const leftArrow = document.getElementById("calendar-left");
 const arrows = document.querySelectorAll(".calendar-side");
 const timeWord = document.querySelector(".time-word");
-const editBtn = document.querySelector(".edit")
+const editBtn = document.querySelector(".edit");
+const currentView = document.getElementById("display");
 // const checkBox = document.querySelectorAll(".checkbox");
 
 // checkBox.addEventListener("click", toggleComplete);
@@ -39,7 +40,7 @@ const editBtn = document.querySelector(".edit")
 //   var xhttp = new XMLHttpRequest();
 //   xhttp.onreadystatechange = function() {
 //     if (this.readyState == 4 && this.status == 200) {
-       
+
 //         console.log("hi")
 //     }
 //     xhttp.open("POST", "../routes/toggle", true);
@@ -49,10 +50,10 @@ const editBtn = document.querySelector(".edit")
 // $.post( url [, data ] [, success ] [, dataType ] )
 
 let v = 0;
-arrows.currentDay = 0
+arrows.currentDay = 0;
 
 function nextDay(evt) {
-    console.log(evt);
+  console.log(evt);
   arrows.currentDay++;
   console.log(arrows.currentDay);
   if (arrows.currentDay > 1) {
@@ -61,17 +62,23 @@ function nextDay(evt) {
   if (arrows.currentDay === 1) {
     dateSlot.textContent = "Tomorrow";
     console.log("hit");
-   rightArrow.style.visibility= 'hidden';
-   rightArrow.style.opacity= '0';
-  }
-  else{
+    rightArrow.style.visibility = "hidden";
+    rightArrow.style.opacity = "0";
+    let t = "tomorrow";
+    currentView.setAttribute("current-view", t);
+    
+    let array = currentView.getAttribute('data-tomorrow');
+    console.log(array)
+    //  await axios.get('/goals/view/'+t, {user: u,})
+    //  window.location.replace('/');
+  } else {
     currentDate();
-    leftArrow.style.visibility= 'visible';
-   leftArrow.style.opacity= '1';
+    leftArrow.style.visibility = "visible";
+    leftArrow.style.opacity = "1";
   }
 }
 function prevDay(v) {
-    arrows.currentDay--;
+  arrows.currentDay--;
   console.log(arrows.currentDay);
   if (arrows.currentDay < -1) {
     arrows.currentDay = -1;
@@ -79,11 +86,11 @@ function prevDay(v) {
   if (arrows.currentDay === -1) {
     dateSlot.textContent = "Yesterday";
     console.log("hit");
-    leftArrow.style.visibility= 'hidden';
-   leftArrow.style.opacity= '0';
-  }else{
-    rightArrow.style.visibility= 'visible';
-    rightArrow.style.opacity= '1';
+    leftArrow.style.visibility = "hidden";
+    leftArrow.style.opacity = "0";
+  } else {
+    rightArrow.style.visibility = "visible";
+    rightArrow.style.opacity = "1";
     currentDate();
   }
 }
@@ -102,17 +109,15 @@ function timeUpdate() {
   let timer = h + ":" + m + ":" + s;
   document.getElementById("currentTime").textContent = timer;
 }
-function getTimeWord (){
+function getTimeWord() {
   let t = new Date();
   let h = parseInt(t.getHours());
-  if(h >= 4 && h < 12){
-    timeWord.textContent = " morning"
-  }
-  else if (h >= 12 && h < 18){
-    timeWord.textContent = " afternoon"
-  }
-  else {
-    timeWord.textContent = " evening"
+  if (h >= 4 && h < 12) {
+    timeWord.textContent = " morning";
+  } else if (h >= 12 && h < 18) {
+    timeWord.textContent = " afternoon";
+  } else {
+    timeWord.textContent = " evening";
   }
 }
 
@@ -134,9 +139,8 @@ function currentDate() {
   let formatted = weekday + " " + month + " " + number;
   dateSlot.textContent = formatted;
 }
-getTimeWord ();
+getTimeWord();
 setInterval(timeUpdate, 1000);
-
 
 timeUpdate();
 setInterval(timeUpdate, 1000);
@@ -152,64 +156,67 @@ function showModal(evt) {
 }
 function hideModal(evt) {
   modalBg.classList.remove("bg-active");
-  
 }
 function hideEditModal(evt) {
   editModalBg.classList.remove("bg-active");
 }
-let g = ''
-let activity = ''
-let u = '';
+let g = "";
+let activity = "";
+let u = "";
 
 function showEditModal(evt) {
   console.log("clicked");
-  editModalBg.classList.add("bg-active")
+  editModalBg.classList.add("bg-active");
   g = evt.target.getAttribute("data-id");
   console.log(g);
   activity = evt.target.getAttribute("data-activity-id");
-  
+
   editModalInput.value = activity;
 }
 function _ajax_request(url, data, callback, method) {
   return jQuery.ajax({
-      url: url,
-      type: method,
-      data: data,
-      success: callback
+    url: url,
+    type: method,
+    data: data,
+    success: callback,
   });
 }
 jQuery.extend({
-  put: function(url, data, callback) {
-      return _ajax_request(url, data, callback, 'PUT');
-}});  
+  put: function (url, data, callback) {
+    return _ajax_request(url, data, callback, "PUT");
+  },
+});
 
-async function confirmEdit(event){
- u = event.target.getAttribute("queryUser");  
- activity = editModalInput.value
- console.log("asdfasdfasdfa",u);
-axios.post('/goals/' + g +'?_method=PUT', {activity:activity, user: u})
-// $.put('/goals/'+g, {activity:activity, id: g})
-hideEditModal()
+async function confirmEdit(event) {
+  u = event.target.getAttribute("queryUser");
+  activity = editModalInput.value;
+  console.log("asdfasdfasdfa", u);
+  await axios.post("/goals/" + g + "?_method=PUT", { activity: activity, user: u });
+  // $.put('/goals/'+g, {activity:activity, id: g})
+  window.location.replace("/");
+  hideEditModal();
 }
-async function deleteObject(event){
-  u = event.target.getAttribute("queryUser");  
- 
-  console.log("asdfasdfasdfa",u);
- axios.post('/goals/' + g +'?_method=DELETE', {user: u})
- hideEditModal()
- // $.put('/goals/'+g, {activity:activity, id: g})
- }
- async function toggleComplete(event){
-  u = event.target.getAttribute("queryUser"); 
-  g = event.target.getAttribute("data-id")
-  console.log(u)
+async function deleteObject(event) {
+  u = event.target.getAttribute("queryUser");
+
+  console.log("asdfasdfasdfa", g);
+  let res = await axios.post("/goals/" + g + "?_method=DELETE", { user: u });
+  console.log(res);
+  window.location.replace("/");
+
+  hideEditModal();
+  // $.put('/goals/'+g, {activity:activity, id: g})
+}
+async function toggleComplete(event) {
+  u = event.target.getAttribute("queryUser");
+  g = event.target.getAttribute("data-id");
+  console.log("evt-target", event.target);
   // console.log(u);
-  console.log('/goals/toggle/' + g +'?_method=PUT', {user: u})
-  axios.post('/goals/toggle/' + g +'?_method=PUT', {user: u})
+
+  await axios.post("/goals/toggle/" + g + "?_method=PUT", { user: u });
+  window.location.replace("/");
   // axios.post('/goals/' + g +'toggle?_method=PUT', {user: u})
- }
-
-
+}
 
 editModalClose.addEventListener("click", hideEditModal);
 rightArrow.addEventListener("click", nextDay);

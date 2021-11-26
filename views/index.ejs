@@ -95,6 +95,8 @@
             </div>
               <div class="goal-list">
                 <% let n = -1 %>
+                <div id="display" current-view = 'today' data-tomorrow='<%= user.tomorrow %>'data-yesterday='<%= user.yesterday %>'data-today='<%= user.today %>'>
+
                 <% user.today.forEach(function(g, i) { %>
                   
                   <div class="goal-container">
@@ -110,6 +112,7 @@
                     <p> <%= g.activity %></p>
                   </div>
                   <% }); %>
+                </div>
               </div>
             
             <div class="calendar-side" id="calendar-right">
@@ -129,7 +132,8 @@
      </div>
    </div>
 
-   <!-- modal create -->
+   <!-- new gaol -->
+
    <div class="modal-bg">
      <div class="modal"> 
        <form action="/" method="post">

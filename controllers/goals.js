@@ -56,7 +56,7 @@ async function toggle(req, res) {
       
       obj.save(function (err) {
       if (err) return console.log(err);
-      return;
+      return res.json(obj.today);
     });
     });
 }
@@ -72,24 +72,33 @@ async function submitEdit(req, res) {
       
       obj.save(function (err) {
       if (err) return console.log(err);
-      return;
+      return res.json(obj.today);
     });
     });
 }
 async function deleteGoal(req, res) {
+  console.log("req.params.id", req.params.id);
+  console.log("req.body", req.body);
   User.findById(req.body.user).exec(function (err, obj) {
-    console.log("I need this ---->", req.params.id);
-    console.log("obj", obj.today);
-    let focus = obj.today.find(function (goal){
-        return goal.id === req.params.id})
-    focus.activity = '';
-      console.log(obj.today);
+    
+    
+    let idx = obj.today.findIndex(function(goal){
+      return goal.id === req.params.id
+    })
+      obj.today.splice(idx,1);
       
       obj.save(function (err) {
       if (err) return console.log(err);
-      return;
+      return res.json(obj.today);
     });
     });
+}
+async function view (req, res){
+  console.log(req.body)
+  User.findById(req.body.user).exec(function (err, obj){
+      let array = obj[req.body.view]
+  })
+  
 }
 // for (var i = 0; i < obj.today.length; i++) {
 //   if (obj.today.id === req.params.id) {
@@ -116,4 +125,5 @@ module.exports = {
   toggle,
   submitEdit,
   deleteGoal,
+  view
 };
