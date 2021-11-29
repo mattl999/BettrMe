@@ -30,6 +30,9 @@ View Tomorrow or Yesterday
 - Shell
 - AJAX
 - Google OAuth
+- Mongoose
+- Express.js
+
 
 ## Getting Started :heavy_check_mark:
 
