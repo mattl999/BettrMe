@@ -1,4 +1,4 @@
-The basics
+
 # BettrMe :muscle:
 
 Welcome to BettrMe!
