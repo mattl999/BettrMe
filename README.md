@@ -27,7 +27,6 @@ View Tomorrow or Yesterday
 - Javascript
 - CSS
 - EJS
-- Shell
 - AJAX
 - Google OAuth
 - Mongoose
