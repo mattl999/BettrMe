@@ -6,8 +6,7 @@
     display: grid;
     grid-template-rows: 15% 85%;
     border-radius: 3vh;
-    position: relative;
-   
+   max-height: 79vh;
     
   }
   .calendar-top{
@@ -32,23 +31,32 @@
     
     border: 1px solid #111;
     border-radius: 3px;
+    overflow-y: auto;
   }
-  .checkmark{
-    height:4vh;
-    width:4vh;
-    z-index: 1;
-    position:absolute;
-    pointer-events: none
+  .calendar-body::-webkit-scrollbar {
+    width: 8px;
+  }
+  .calendar-body::-webkit-scrollbar-track {
+    background: rgba(234, 221, 251, 0);
+    border-radius: 20px;
+    /* color of the tracking area */
+  }
+  .calendar-body::-webkit-scrollbar-thumb {
+    background-color: rgba(105, 105, 105, 0.5); /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+  }
   
-  }
   .calendar-side{
-    background-color: #ddd;
+    
+    background-color: rgba(221, 221, 221, 0);
     transition-timing-function:linear;
     transition: 0.2s;
+    height: 66.9vh;
     }
-  .calendar-side:hover{
+  .arrow:hover{
   background-color: #ccc;
   cursor: pointer;
+  border-radius: 50%;
   }
   .goal-list{
     grid-column-start: 2;
@@ -68,9 +76,19 @@
     margin: 3vh;
     display: flex;
     justify-content: center;
+    
     align-items: center;
     cursor:pointer;
-    z-index: 4;
+    z-index: 0;
+  }
+  .checkmark{
+    height:4vh;
+    width:4vh;
+    z-index: 5;
+    margin-left: 1.2vw;
+    margin-bottom: 2vh;
+    pointer-events: none
+  
   }
   .checkbox-container{
     width:3vh;
@@ -88,6 +106,7 @@
   }
  
   #calendar-left{
+    
     display:flex;
     align-items: center;
     justify-content: center;
@@ -104,10 +123,12 @@
     opacity: .8;
   }
   #arrow-left{
+    position:fixed;
     grid-column-start: 1;
     grid-row-start: 1;
   }
   #arrow-right{
+    position:fixed;
     grid-column-start: 3;
     grid-row-start: 1;
   }

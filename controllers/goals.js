@@ -23,22 +23,6 @@ function create(req, res) {
   });
 }
 
-
-
-// function submitEdit(req, res) {
-//   console.log(req.params.id);
-//   console.log("REQ.BODY------->", req.body);
-
-//   User.findById(req.body.user).exec(function (err, obj) {
-//     console.log("I need this ---->", req.params.id);
-//     console.log("obj", obj.today);
-
-//     obj.today.forEach(function (goal) {
-//       console.log("to match one of these --->", goal.id);
-//     });
-//   });
-// }
-
 async function toggle(req, res) {
   console.log("REQ.BODY------->", req.body);
   User.findById(req.body.user).exec(function (err, obj) {
