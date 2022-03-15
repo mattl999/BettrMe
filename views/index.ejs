@@ -32,9 +32,9 @@
     <!-- navbar stuff -->
     <nav class= "top-bar">
       <h1 class="title">BettrMe</h1>
-      
+      <%console.log("---->",user) %>
         <% if (user) { %>
-          <div class='logout'><a class = 'login' href="/logout"><i class="material-icons left"></i>Log Out</a> <img class= 'dp' src="<%= user.picture %>" alt=""></div>
+          <div class='logout'><a class = 'login' href="/logout"><i class="material-icons left"></i>Log Out</a> <img class= 'dp' src="<%= user.avatar %>" alt=""></div>
         <% } else { %>
           <a class = "login" href="/auth/google"><i class="material-icons left"></i>Login</a>
         <% } %>
