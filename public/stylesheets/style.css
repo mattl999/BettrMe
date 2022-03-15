@@ -48,9 +48,10 @@ h1 {
 
 /* main sections */
 .sidebar {
-  background-color: teal;
+  background-color: rgb(123, 135, 138);
+  border-right:1px solid rgb(95, 105, 107);
   display: grid;
-  grid-template-rows: 90% 10%;
+  grid-template-rows: 85% 15%;
 }
 .calendar-wrapper {
   background-color: #888;

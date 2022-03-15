@@ -1,8 +1,13 @@
 
 #side-btn-div{
     grid-row-start: 2;
-  
-    padding: 0% 1% 8% 5%;
+  display: flex;
+  justify-content: center;
+   align-items: center;
+   padding:3%;
+   border-top:1px solid rgb(95, 105, 107);
+   margin-left:8%;
+   margin-right:8%;
     
 }
 .side-goal-container{
@@ -42,8 +47,8 @@
     font-size: 1.7vh;
   }
 .modal-btn {
-    width:95%;
-    height: 95%;
+    width:110%;
+    height: 73%;
     margin:0;
     background-color: green;
     border-radius: 4vh;
@@ -52,6 +57,7 @@
     color:white;
     font-family: 'Bebas Neue', cursive;
     cursor: pointer;
+    box-sizing: border-box;
 }
 .edit{
   cursor:pointer;
