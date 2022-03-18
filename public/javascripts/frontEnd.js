@@ -209,13 +209,34 @@ async function deleteObject(event) {
 }
 async function toggleComplete(event) {
   u = event.target.getAttribute("queryUser");
-  g = event.target.getAttribute("data-id");
+  g = event.target.getAttribute("dataId");
   console.log("evt-target", event.target);
   // console.log(u);
 
   await axios.post("/goals/toggle/" + g + "?_method=PUT", { user: u });
   window.location.replace("/");
   // axios.post('/goals/' + g +'toggle?_method=PUT', {user: u})
+}
+
+async function toggler(event){
+  g = event.target.getAttribute("dataId");
+  u = event.target.getAttribute("queryUser");
+   console.log("userId front-end", u);
+   console.log("event.target-->", event.target);
+  let completed;
+  try{
+   
+    completed = await fetch('/goals/toggle/' + g +"/"+ u, { method: 'PUT', user: u })
+  .then(response => response.json());
+  console.log(completed);
+  completed ? event.target.querySelector("img").setAttribute("class", "checkmark") : event.target.querySelector("img").setAttribute("class", "checkmark invisible");
+    // get the element with the number of votes
+    
+  }catch(err){
+console.log("front end err-->",err)
+  }
+    // event.target.setAttribute = ("id", jsonRes.completed)
+  
 }
 
 editModalClose.addEventListener("click", hideEditModal);

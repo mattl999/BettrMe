@@ -81,6 +81,9 @@
     cursor:pointer;
     z-index: 0;
   }
+  .invisible{
+    visibility: hidden;
+  }
   .checkmark{
     height:4vh;
     width:4vh;

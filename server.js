@@ -6,7 +6,7 @@ var logger = require('morgan');
 //session middleware
 var session = require('express-session');
 var passport = require('passport');
-
+var bodyParser = require('body-parser');
 // load the env vars
 require('dotenv').config();
 
@@ -27,6 +27,7 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 

@@ -101,10 +101,10 @@
                   
                   <div class="goal-container">
                       
-                    <button onclick="toggleComplete(event)" data-id="<%= g.id %>" queryUser='<%= user.id %>' class="checkbox" >
-                      <% if(g.completed) { %>
-                        <img class = 'checkmark' src='images/checkmark 3.png'>
-                         <% } %>
+                    <button onclick="toggler(event)" dataId="<%= g.id %>" queryUser='<%= user.id %>' class="checkbox" >
+                      
+                        <img class = 'checkmark invisible' src='images/checkmark 3.png'>
+                         
                       </button>
                       
                    

@@ -40,10 +40,31 @@ async function toggle(req, res) {
       
       obj.save(function (err) {
       if (err) return console.log(err);
-      return res.json(obj.today);
+      // console.log("res.json",res.json(obj.today))
+      return res.json(focus.completed);
     });
     });
 }
+async function toggler(req, res) {
+  console.log("REQ.BODY------->", req);
+  try {
+  let user = await User.findById(req.params.user);
+  console.log("user --->",user)
+  let toggled = await user.today.find((goal) => goal.id === req.params.id );
+  console.log("toggled --->",toggled)
+
+  toggled.completed ? toggled.completed = false : toggled.completed = true; 
+  user.save(function (err) {
+    if (err) return console.log(err);
+    // console.log("res.json",res.json(user.today))
+    return res.status(200).json(toggled.completed);
+    })
+  }
+  catch(err){
+        console.log(err)
+  }   
+  };
+   
 async function submitEdit(req, res) {
     console.log("REQ.BODY------->", req.body);
   User.findById(req.body.user).exec(function (err, obj) {
@@ -109,5 +130,6 @@ module.exports = {
   toggle,
   submitEdit,
   deleteGoal,
-  view
+  view, 
+  toggler
 };
