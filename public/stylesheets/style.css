@@ -16,7 +16,7 @@ body {
 }
 body > nav {
   grid-area: nav;
-  background-color: #0275d8;
+  background-color: #173599;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -52,6 +52,7 @@ h1 {
 /* main sections */
 .sidebar {
   background-color: rgb(123, 135, 138);
+  
   border-right:1px solid rgb(95, 105, 107);
   display: grid;
   grid-template-rows: 85% 15%;
