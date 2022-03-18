@@ -31,5 +31,3 @@ const userSchema = new Schema(
 
 module.exports = mongoose.model("User", userSchema);
 
-//   [yesterday, today, tomorrow]
-//   yester = [goal1,goal2,goal3]

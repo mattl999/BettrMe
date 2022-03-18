@@ -196,7 +196,7 @@ cursor: pointer;
 }
 .progress-fill {
   background-color: #4b93d1;
-  width: 80%;
+  
   height: 100%;
   border-radius: 14vw;
   overflow: hidden;

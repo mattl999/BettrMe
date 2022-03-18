@@ -221,22 +221,17 @@ async function toggleComplete(event) {
 async function toggler(event){
   g = event.target.getAttribute("dataId");
   u = event.target.getAttribute("queryUser");
-   console.log("userId front-end", u);
-   console.log("event.target-->", event.target);
+   
   let completed;
   try{
-   
     completed = await fetch('/goals/toggle/' + g +"/"+ u, { method: 'PUT', user: u })
   .then(response => response.json());
-  console.log(completed);
   completed ? event.target.querySelector("img").setAttribute("class", "checkmark") : event.target.querySelector("img").setAttribute("class", "checkmark invisible");
     // get the element with the number of votes
     
-  }catch(err){
-console.log("front end err-->",err)
-  }
-    // event.target.setAttribute = ("id", jsonRes.completed)
-  
+  } catch(err) {
+    console.log(err)
+  }  
 }
 
 editModalClose.addEventListener("click", hideEditModal);

@@ -73,16 +73,25 @@
     width:3vh;
     border: .5vh solid #777;
     border-radius: 1px;
-    margin: 3vh;
+    margin: 2.4vh 2vw 2.4vh 0vw ;
+   
     display: flex;
     justify-content: center;
-    
+    margin-left:1.5vw;
     align-items: center;
     cursor:pointer;
     z-index: 0;
   }
   .invisible{
     visibility: hidden;
+  }
+  .goal-divider{
+    color:grey;
+    
+    margin:.5vw;
+    margin-top:0;
+    margin-bottom:0;
+    
   }
   .checkmark{
     height:4vh;

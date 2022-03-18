@@ -3,16 +3,13 @@ var router = express.Router();
 const passport = require("passport");
 const goalCtrl = require("../controllers/goals");
 
-/* GET home page. */
+// GET home page.
 router.get("/", isLoggedIn, goalCtrl.index);
 
-//functionality Routes
-
+//CRUD Routes
 router.post("/", goalCtrl.create);
-router.put('/:id', goalCtrl.toggle);
 router.put('/goals/:id',goalCtrl.submitEdit)
 router.delete('/goals/:id',goalCtrl.deleteGoal)
-// router.put('/goals/toggle/:id',goalCtrl.toggle)
 router.put('/goals/toggle/:id/:user',goalCtrl.toggler)
 // router.get('/goals/view/:id', goalCtrl.view)
 
