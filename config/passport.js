@@ -11,7 +11,7 @@ passport.use(
     },
     function (accessToken, refreshToken, profile, cb) {
       // a user has logged in
-      console.log("profile from passport config: ", profile);
+      // console.log("profile from passport config: ", profile);
       User.findOne({ googleId: profile.id }, function (err, user) {
         if (err) return cb(err);
         if (user) {
@@ -22,6 +22,7 @@ passport.use(
             email: profile.emails[0].value,
             googleId: profile.id,
             avatar: profile._json.picture,
+            
           });
           newUser.save(function (err) {
             if (err) return cb(err);

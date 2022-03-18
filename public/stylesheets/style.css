@@ -1,7 +1,10 @@
+:root{
+  --bg: #888;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-  background-color: #888;
+  background-color: rgb(167, 167, 167);
   height: 100vh;
   display: grid;
   grid-template-rows: 7% 7% 1fr;
@@ -41,7 +44,7 @@ h1 {
 }
 
 .main-wrapper {
-  background-color: palevioletred;
+  
   display: grid;
   grid-template-columns: 18% 60% 22%;
 }
@@ -54,10 +57,10 @@ h1 {
   grid-template-rows: 85% 15%;
 }
 .calendar-wrapper {
-  background-color: #888;
+  background-color: var(--bg);
 }
 .quote {
-  background-color: #888;
+  background-color: var(--bg);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -216,12 +219,13 @@ cursor: pointer;
   justify-content: space-between;
 }
 .progress-percent {
-  font-size: 1.6vw;
+  font-size: 2.3vh;
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   font-family: "Outfit", sans-serif;
   overflow: hidden;
+  margin-right:1vw;
 }
 .top-message {
   font-size: 2.5vh;

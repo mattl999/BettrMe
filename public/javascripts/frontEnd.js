@@ -28,6 +28,8 @@ const arrows = document.querySelectorAll(".calendar-side");
 const timeWord = document.querySelector(".time-word");
 const editBtn = document.querySelector(".edit");
 const currentView = document.getElementById("display");
+const progFill = document.querySelector(".progress-fill");
+const percentNum = document.querySelector(".progress-percent");
 // const checkBox = document.querySelectorAll(".checkbox");
 
 // checkBox.addEventListener("click", toggleComplete);
@@ -196,14 +198,16 @@ async function confirmEdit(event) {
   window.location.replace("/");
   hideEditModal();
 }
+
 async function deleteObject(event) {
   u = event.target.getAttribute("queryUser");
 
   console.log("asdfasdfasdfa", g);
   let res = await axios.post("/goals/" + g + "?_method=DELETE", { user: u });
-  console.log(res);
+  console.log(res.percent);
+  progFill.style.width = res.percent;
   window.location.replace("/");
-
+  
   hideEditModal();
   // $.put('/goals/'+g, {activity:activity, id: g})
 }
@@ -224,10 +228,15 @@ async function toggler(event){
    
   let completed;
   try{
-    completed = await fetch('/goals/toggle/' + g +"/"+ u, { method: 'PUT', user: u })
+    res = await fetch('/goals/toggle/' + g +"/"+ u, { method: 'PUT', user: u })
   .then(response => response.json());
-  completed ? event.target.querySelector("img").setAttribute("class", "checkmark") : event.target.querySelector("img").setAttribute("class", "checkmark invisible");
+  console.log("front-end res -->",res)
+  res.completed ? event.target.querySelector("img").setAttribute("class", "checkmark") : event.target.querySelector("img").setAttribute("class", "checkmark invisible");
     // get the element with the number of votes
+    
+    
+    progFill.style.width = res.percent;
+    percentNum.textContent = res.percent;
     
   } catch(err) {
     console.log(err)
