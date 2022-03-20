@@ -16,7 +16,7 @@ body {
 }
 body > nav {
   grid-area: nav;
-  background-color: #173599;
+  background-color: #336be4;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -197,6 +197,7 @@ cursor: pointer;
   height: 45%;
   border-radius: 14vw;
   border: 0.3vh solid white;
+  background-color: rgba(255,255,255,.3);
 }
 .progress-fill {
   background-color: #4b93d1;

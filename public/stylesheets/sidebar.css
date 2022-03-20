@@ -64,6 +64,10 @@
     cursor: pointer;
     box-sizing: border-box;
 }
+.modal-btn:hover{
+  background-color: rgb(0, 139, 0);
+}
+
 .edit{
   cursor:pointer;
   text-decoration: underline;
@@ -86,4 +90,7 @@
   font-family: 'Bebas Neue', cursive;
   cursor: pointer;
   box-sizing: border-box;
+}
+.edit-btn:hover{
+  background-color: rgb(156, 156, 156);
 }
