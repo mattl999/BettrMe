@@ -27,7 +27,7 @@
     <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="/javascripts/frontEnd.js"></script>
   </head>
-  <body>
+  <body onload="progMessage('<%= user.percent %>')" >
 
     <!-- navbar  -->
     <nav class= "top-bar">
@@ -48,8 +48,16 @@
       </svg>
       <div id="currentTime"></div>
     </div>
-    <div class='top-message'>Good <div class="time-word"> Morning </div>
-      <%= user.name.split(" ")[0] %> !
+    <div class='top-message'>Good <span class="time-word"> Morning </span>
+      <%= user.name.split(" ")[0] %>. 
+      <div class="progress-message">
+      <% if(!user.today.length){ %>
+         you can set new goals by clicking the green button! 
+        
+      <% } else if(!parseInt(user.percent)){ %>
+        It's never too late to get started on those goals!
+        <% } %>
+      </div>
     </div>
    <div class="progress-section-container">
       <div class = 'progress-container'>

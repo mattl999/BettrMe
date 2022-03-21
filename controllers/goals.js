@@ -87,6 +87,10 @@ async function deleteGoal(req, res) {
     }
   });
   user.percent = String((done / user.today.length).toFixed(2) * 100).concat("%");
+  if(user.percent === "NaN%"){
+      user.percent = "0%";
+    } 
+
   console.log("delete percent--->*", user.percent)
   user.save(function (err) {
     if (err) return console.log(err);

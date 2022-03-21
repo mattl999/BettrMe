@@ -19,7 +19,7 @@ const userSchema = new Schema(
     email: String,
     avatar: String,
     googleId: String,
-    percent: String,
+    percent:{type :String, default:"0%"},
     today: [goalSchema],
     yesterday: [goalSchema],
     tomorrow: [goalSchema],
