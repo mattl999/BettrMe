@@ -44,9 +44,13 @@ h1 {
 }
 
 .main-wrapper {
-  
+  background-color: var(--bg);
+  /* background-image: url(/images/80s.jpg); */
+  background-repeat: repeat-y;
+  background-size: cover;
   display: grid;
   grid-template-columns: 18% 60% 22%;
+ 
 }
 
 /* main sections */
@@ -58,10 +62,10 @@ h1 {
   grid-template-rows: 85% 15%;
 }
 .calendar-wrapper {
-  background-color: var(--bg);
+  
 }
 .quote {
-  background-color: var(--bg);
+ 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -171,7 +175,7 @@ cursor: pointer;
   font-size: 18px;
 }
 .dp {
-  height: 60%;
+  height: 55%;
 
   margin-left: 1vw;
 

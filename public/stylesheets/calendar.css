@@ -30,7 +30,9 @@
     grid-template-rows: 1fr;
     
     border: 1px solid #111;
-    border-radius: 3px;
+    border-radius: 0;
+    border-bottom-left-radius: 3vh;
+    border-bottom-right-radius: 3vh;
     overflow-y: auto;
   }
   .calendar-body::-webkit-scrollbar {

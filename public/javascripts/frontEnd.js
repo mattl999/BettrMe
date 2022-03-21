@@ -280,9 +280,7 @@ function progMessage(event){
   // console.log(event.target)
   let percentVal = parseInt(event);
   
-  if (!percentVal) {
-    progMsg.innerHTML = `&nbsp Time to get started on those goals`;
-  } 
+  
   if(percentVal > 0 && percentVal < 40) {     
     console.log("hit 1") 
     progMsg.innerHTML = `&nbsp Great work so far! &#128079;`;
