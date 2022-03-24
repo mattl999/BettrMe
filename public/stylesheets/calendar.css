@@ -2,12 +2,12 @@
     margin: 3% 5%;
     width: 90%;
     height:94%;
-    background-color: #ddd;
+    background-color: #f5f5f5;
     display: grid;
     grid-template-rows: 15% 85%;
     border-radius: 3vh;
    max-height: 79vh;
-    
+   position: relative;
   }
   .calendar-top{
     background-color: bg(209, 4, 4);

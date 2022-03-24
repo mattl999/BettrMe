@@ -8,16 +8,19 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
     </style>
-   <style>
+    <style>
     @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
     </style>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@200&display=swap');
-      </style>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
-        </style>
-        
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@200&display=swap');
+    </style>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+    </style>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+    </style>
+      
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="/stylesheets/calendar.css" />
     <link rel="stylesheet" href="/stylesheets/modal.css">
@@ -69,7 +72,7 @@
     </div>
     </nav>
 
-    <!-- non navbar content starts -->
+    <!-- non-navbar content starts -->
    <div class="main-wrapper">
 
     <!-- sidebar -->
@@ -149,34 +152,58 @@
 
    <!-- create modal -->
 
-   <div class="modal-bg">
-     <div class="modal"> 
+   <div class="modal-bg ">
+     <div class="edit-modal"> 
+      <div class="l-margin margin">
+        <div class="hole first-hole"></div>
+        <div class="hole second-hole"></div>
+        <div class="hole third-hole"></div>
+       </div>
+       <div class="r-margin margin"></div>
+      <div class="modal-title">
+        <span class="card-title">Enter your new Goal  :</span>
+
+      </div>
+      <div class="edit-info-container">
        <form action="/" method="post">
-      <h2>Enter Your New Goal</h2>
-       <label for="goal">Goal: </label>
-       <input id="modal-input" type="text" name="activity">
-       <button class="submit" type="submit">Submit</button>
-       <div class></div>
+      
+       
+       <input autocomplete="off" id="modal-input" type="text" name="activity" >
+       <div class="edit-btn-container">
+       <button class="edit-submit" type="submit">Submit</button>
+      </div>
        <div class="modal-close">
          <span >x</span>
         </form>
+      </div>
         </div>
 
      </div>
 
      <!-- edit modal -->
    </div>
-   <div class="edit-modal-bg">
+   <div class="edit-modal-bg ">
+ 
     <div class="edit-modal">
+      <div class="l-margin margin">
+        <div class="hole first-hole"></div>
+        <div class="hole second-hole"></div>
+        <div class="hole third-hole"></div>
+       </div>
+       <div class="r-margin margin"></div>
+      <div class="modal-title">
+        <span class="card-title">Edit Goal  :</span>
+
+      </div>
      <div class="edit-info-container">
-     <h2>Edit Goal</h2>
-      <label for="goal">Goal: </label>
       
-      <input id="edit-modal-input" type="text" name="activity">
+      
+      <input autocomplete="off" id="edit-modal-input" type="text" name="activity">
       <div class="edit-modal-close">
         <span >x</span>
        </div>
       </div>
+      <!-- buttons -->
       <div class="edit-btn-container">
       <button onclick ="deleteObject(event)" queryUser= "<%= user.id %>"  class="delete edit-submit">Delete</button>
       <button onclick ="confirmEdit(event)" queryUser= "<%= user.id %>"  class="edit-submit">Edit</button>

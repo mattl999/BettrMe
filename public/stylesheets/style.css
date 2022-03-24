@@ -2,7 +2,8 @@
   --bg: #888;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Outfit", sans-serif;
+  font-weight:100;
   margin: 0;
   background-color: rgb(167, 167, 167);
   height: 100vh;
@@ -84,16 +85,7 @@ h1 {
   font-size: 1.5vw;
   margin-top: 1vh;
 }
-.calendar {
-  margin: 3% 5%;
-  width: 90%;
-  height: 94%;
-  background-color: #bbb;
-  display: grid;
-  grid-template-rows: 15% 85%;
 
-  position: relative;
-}
 .calendar-top {
   background-color: rgb(153, 47, 47);
   display: flex;

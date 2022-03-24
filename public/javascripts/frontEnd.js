@@ -174,8 +174,9 @@ function showEditModal(evt) {
   g = evt.target.getAttribute("data-id");
   console.log(g);
   activity = evt.target.getAttribute("data-activity-id");
-
+  console.log("act",activity);
   editModalInput.value = activity;
+  // editModalInput.setAttribute("value",activity) ;
 }
 function _ajax_request(url, data, callback, method) {
   return jQuery.ajax({

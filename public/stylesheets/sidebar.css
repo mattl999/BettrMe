@@ -14,10 +14,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height:4vh;
+   /* margin:0 10px; */
     border-bottom: 1px solid rgb(107, 107, 107);
     padding-left: .5vw;
     color: rgb(31, 31, 31);
+  }
+  .side-goal-activity {
+    max-width: 70%;
+  }
+  .side-goal-activity p{
+   
+    margin:14px 0;
   }
   #edit{
       display: inline;
@@ -39,8 +46,8 @@
     align-items: center;
     font-size: 1.3vh;
     margin:0 0.2vh;
-    width:20%;
-    height: 80%;
+    width:50px;
+    height: 37px;
   }
   #side-goal-list{
     grid-row-start: 1;  
