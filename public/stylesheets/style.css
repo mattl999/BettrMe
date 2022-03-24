@@ -2,8 +2,8 @@
   --bg: #888;
 }
 body {
-  font-family: "Outfit", sans-serif;
-  font-weight:100;
+  font-family: 'Roboto', sans-serif;
+  
   margin: 0;
   background-color: rgb(167, 167, 167);
   height: 100vh;

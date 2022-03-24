@@ -12,7 +12,7 @@ var script = document.createElement("script");
 script.src = "https://code.jquery.com/jquery-3.6.0.min.js";
 script.type = "text/javascript";
 document.getElementsByTagName("head")[0].appendChild(script);
-
+const modalInput = document.getElementById("modal-input");
 const editModalInput = document.getElementById("edit-modal-input");
 const modalBtn = document.querySelector(".modal-btn");
 const modalBg = document.querySelector(".modal-bg");
@@ -157,6 +157,7 @@ if (new Date().getHours() === 0) {
 function showModal(evt) {
   console.log("clicked");
   modalBg.classList.add("bg-active");
+  modalInput.focus()
 }
 function hideModal(evt) {
   modalBg.classList.remove("bg-active");
@@ -176,6 +177,7 @@ function showEditModal(evt) {
   activity = evt.target.getAttribute("data-activity-id");
   console.log("act",activity);
   editModalInput.value = activity;
+  editModalInput.focus()
   // editModalInput.setAttribute("value",activity) ;
 }
 function _ajax_request(url, data, callback, method) {

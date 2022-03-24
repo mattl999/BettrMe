@@ -3,6 +3,7 @@
         white, white 25px,
         #9198e5 26px, #9198e5 27px
        );
+    --modal-close:rgb(231, 87, 87);
 }
 #modal-input{
     border: none;
@@ -10,14 +11,15 @@
     border-bottom:2px solid rgba(0, 0, 0,.8);
      background: linear-gradient(to left, rgba(184, 9, 9,0), rgba(255, 255, 255,.9) 1%, rgba(255, 255, 255,.9) 99%, transparent 100%);
     /* background-color: rgba(0,0,0,0); */
-    height:54px;
     
-    width:75%;
+     height:54px;
+     width:80%;
     font-size: 38px;
     font-family: 'Indie Flower', cursive;
-    padding-left: 17px;
+    padding-left: 10px;
 }
 #modal-input:focus{
+   
     background: linear-gradient(to left, rgba(184, 9, 9,0), rgba(255, 255, 255,.9) .5%, rgba(255, 255, 255,.9) 99.5%, transparent 100%);
     background-color: rgba(255, 255, 255,.9);
 /* outline:1px solid #959ceb; */
@@ -36,7 +38,7 @@ border-radius: 2px;
     align-items: center;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0s, opacity 0.1s;
+    transition: visibility 0s, opacity 0.2s;
 }
 .bg-active{
     visibility: visible;
@@ -89,7 +91,7 @@ border-radius: 2px;
     font-family: 'Indie Flower', cursive; 
 }
 .modal-close:hover {
-    background-color: rgb(240, 50, 50);
+    background-color: var(--modal-close);
 }
 div span{
 margin:0;

@@ -1,6 +1,7 @@
 .calendar{
     margin: 3% 5%;
     width: 90%;
+    max-width: 900px;
     height:94%;
     background-color: #f5f5f5;
     display: grid;
@@ -8,6 +9,11 @@
     border-radius: 3vh;
    max-height: 79vh;
    position: relative;
+  }
+  @media only screen and (min-width: 2000px) {
+    .calendar {
+      max-width: 1200px;
+    }
   }
   .calendar-top{
     background-color: bg(209, 4, 4);
@@ -21,7 +27,7 @@
     font-size: 5vh;
     font-family: 'Anton', sans-serif;
     -webkit-text-stroke: 1px black;
-    
+    letter-spacing: 2px;
   
   }
   .calendar-body{
@@ -67,7 +73,11 @@
     flex-direction: column;
     justify-content: flex-start;
     padding:1vh;
-    font-size: 3.5vh;
+    font-size: 3.4vh;
+    font-weight: 500;
+  } 
+  .goal-container p{
+    margin-left:2%;
   }
   .checkbox{
  

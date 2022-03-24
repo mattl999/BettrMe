@@ -13,6 +13,7 @@
 .side-goal-container{
     display: flex;
     align-items: center;
+    min-height: 55px ;
     justify-content: space-between;
    /* margin:0 10px; */
     border-bottom: 1px solid rgb(107, 107, 107);
@@ -48,6 +49,14 @@
     margin:0 0.2vh;
     width:50px;
     height: 37px;
+    min-width: 50px;
+      min-height: 40px;
+  }
+  @media only screen and (min-width: 2000px) {
+    .side-goal-links {
+      min-width: 60px;
+      min-height: 45px;
+    }
   }
   #side-goal-list{
     grid-row-start: 1;  
