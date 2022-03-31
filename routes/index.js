@@ -12,6 +12,8 @@ router.put('/goals/:id',goalCtrl.submitEdit)
 router.delete('/goals/:id',goalCtrl.deleteGoal)
 router.put('/goals/toggle/:id/:user',goalCtrl.toggler)
 router.put('/intro/:id', goalCtrl.introForm)
+router.put('/change/:viewing/:id', goalCtrl.changeView)
+router.get('/getDisplayVal/:id', goalCtrl.giveDisplayVal)
 // router.get('/goals/view/:id', goalCtrl.view)
 
 //Oauth Routes

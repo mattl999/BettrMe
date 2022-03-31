@@ -31,10 +31,11 @@
     <link rel="stylesheet" href="/stylesheets/introModal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="https://unpkg.com/ejs@3.1.6/ejs.min.js"></script>
     <script defer src="/javascripts/frontEnd.js"></script>
     
   </head>
-  <body onload="progMessage('<%= user.percent %>')" >
+  <body onload="renderFunc('<%= user.percent %>', '<%= user.displayVal %>')" >
 
     <!-- navbar  -->
     <nav class= "top-bar">
@@ -103,42 +104,37 @@
      <div class="calendar-wrapper">
         <div class="calendar">
           <div class="calendar-top">
-            Insert Date here
+           
           </div>
 
           <div class="calendar-body">
-            <div class="calendar-side" id="calendar-left">
+            <div class="calendar-side"   onclick="prevDay(event)" id="calendar-left" queryUser = "<%= user.id %>">
 
               <svg class="arrow" id="arrow-left"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
               </svg>
             </div>
-              <div class="goal-list">
-                <% let n = -1 %>
-                <div id="display" current-view = 'today'` data-tomorrow='<%= user.tomorrow %>'data-yesterday='<%= user.yesterday %>'data-today='<%= user.today %>'>
-
-                <% user.today.forEach(function(g, i) { %>
-                  
-                  <div class="goal-container">
-                      
-                    <button onclick="toggler(event)" dataId="<%= g.id %>" queryUser='<%= user.id %>' class="checkbox" >
+            <div class="goal-list">              
+              <div id='display'>
+                
+                <% user.displaying.forEach(function(g, i) { %>
+                
+                  <div class='goal-container'>                      
+                    <button onclick='toggler(event)' dataId='<%= g.id %>' queryUser='<%= user.id %>' class='checkbox' >
                         <% if (g.completed){ %>
                         <img class = 'checkmark ' src='images/checkmark 3.png'>
                         <% } else { %>
-                        <img class = 'checkmark invisible ' src='images/checkmark 3.png'>
-                         <% } %>
-                      </button>
-                      
-                   
-
-                    <p> <%= g.activity %></p>
+                        <img class = 'checkmark invisible' src='images/checkmark 3.png'>
+                        <% } %>
+                    </button>
+                    <p> <%= g.activity %> </p>
                   </div>
-                  <hr class="goal-divider">
-                  <% }); %>
-                </div>
+                <hr class='goal-divider'>               
+                <% }); %>
               </div>
+            </div>
             
-            <div class="calendar-side" id="calendar-right">
+            <div class="calendar-side" id="calendar-right" onclick="nextDay(event)" queryUser = "<%= user.id %>" currentDay = "0">
 
             <svg class="arrow" id="arrow-right" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>

@@ -32,69 +32,100 @@ const progFill = document.querySelector(".progress-fill");
 const percentNum = document.querySelector(".progress-percent");
 const progMsg = document.querySelector(".progress-message");
 const topMsg = document.querySelector(".top-message");
-const timeInput = document.getElementById('datetime12')
+const timeInput = document.getElementById('datetime12');
+const calendarDisplay = document.querySelector(".goal-list")
+const innerDisplay = document.querySelector("#display")
 
+function currentDate() {
+  const d1 = new Date();
+  // console.log(day);
+  const options = {
+    weekday: "long",
+    year: undefined,
+    month: "long",
+    day: "numeric",
+  };
+  let d2 = d1.toLocaleDateString(undefined, options);
+  let array = d2.split(" "),
+    weekday = array[0],
+    number = array[1],
+    month = array[2];
+  let n = parseInt(number);
+  let formatted = weekday + " " + month + " " + number;
+  return formatted;
+}
 
-let v = 0;
-arrows.currentDay = 0;
-let array = [];
-function nextDay(evt) {
- 
-  arrows.currentDay++;
-  console.log(arrows.currentDay);
-  if (arrows.currentDay > 1) {
-    arrows.currentDay = 1;
-  }
-  if (arrows.currentDay === 1) {
-    dateSlot.textContent = "Tomorrow";
+async function nextDay(event) {
+  let viewing= "";
+  let u = event.target.getAttribute('queryUser')
+  let res = await fetch("/getDisplayVal/" + u, {
+    method: "GET",
+  }).then((response) => response.json());
+  v =  res.displayVal;
+  v++
+  console.log("v",v);
+  if (v === 1) {
+   
     console.log("tomorrow");
+    viewing = "tomorrow"
     rightArrow.style.visibility = "hidden";
     rightArrow.style.opacity = "0";
-    rightArrow.style.pointerEvents = 'none';
-
-    let t = "tomorrow";
-    currentView.setAttribute("current-view", t);
-
-    array = currentView.getAttribute("data-tomorrow");
-    console.log("data-tomorrow",typeof(array));
-    //  await axios.get('/goals/view/'+t, {user: u,})
-    //  window.location.replace('/');
+    rightArrow.style.pointerEvents = 'none';  
   } else {
-    currentDate();
-    array = currentView.getAttribute("data-today");
-    console.log("data-today",array);
-
+    
     console.log("today")
+    viewing = "today"
     leftArrow.style.visibility = "visible";
     leftArrow.style.opacity = "1";
     leftArrow.style.pointerEvents = 'auto'
-
   }
+  try {
+    res = await fetch("/change/" + viewing + "/" + u, {
+      method: "PUT",
+    }).then((response) => response.json());
+    }
+    catch(err){
+      console.log(err)
+    }
+    window.location.replace('/')
 }
-function prevDay(v) {
-  arrows.currentDay--;
-  console.log(arrows.currentDay);
-  if (arrows.currentDay < -1) {
-    arrows.currentDay = -1;
+async function prevDay(event, val) {
+  let viewing= "";
+  let u = event.target.getAttribute('queryUser')
+  let res = await fetch("/getDisplayVal/" + u, {
+    method: "GET",
+  }).then((response) => response.json());
+  v = res.displayVal;
+  v--;
+  console.log("v",v);
+  if (v < -1) {
+    v = -1;
   }
-  if (arrows.currentDay === -1) {
-    dateSlot.textContent = "Yesterday";
+  if (v === -1) {
+    
+    viewing = "yesterday"
     console.log("Yesterday");
-    array = currentView.getAttribute("data-yesterday");
-    console.log(array)
     leftArrow.style.visibility = "hidden";
     leftArrow.style.opacity = "0";
     leftArrow.style.pointerEvents = 'none';
   } else {
+    
     console.log("today");
-    array = currentView.getAttribute("data-yesterday");
-    console.log(array)
+    viewing = "today"
     rightArrow.style.visibility = "visible";
     rightArrow.style.opacity = "1";
     rightArrow.style.pointerEvents = 'auto'
-    
-    currentDate();
   }
+  try {
+    res = await fetch("/change/" + viewing + "/" + u, {
+      method: "PUT",
+    }).then((response) => response.json());
+    }
+    catch(err){
+      console.log(err)
+    }
+    window.location.replace('/')
+  
 }
 // leftArrow.addEventListener("click", prevDay);
 function addZero(i) {
@@ -123,34 +154,17 @@ function getTimeWord() {
   }
 }
 
-function currentDate() {
-  const d1 = new Date();
-  // console.log(day);
-  const options = {
-    weekday: "long",
-    year: undefined,
-    month: "long",
-    day: "numeric",
-  };
-  let d2 = d1.toLocaleDateString(undefined, options);
-  let array = d2.split(" "),
-    weekday = array[0],
-    number = array[1],
-    month = array[2];
-  let n = parseInt(number);
-  let formatted = weekday + " " + month + " " + number;
-  dateSlot.textContent = formatted;
-}
+
 getTimeWord();
 setInterval(timeUpdate, 1000);
 
 timeUpdate();
-setInterval(timeUpdate, 1000);
-currentDate();
 
-if (new Date().getHours() === 0) {
-  currentDate();
-}
+
+
+// if (new Date().getHours() === 0) {
+//   currentDate();
+// }
 
 function showModal(evt) {
   console.log("clicked");
@@ -278,8 +292,18 @@ async function toggler(event) {
     console.log(err);
   }
 }
-function progMessage(event){
-  let percentVal = parseInt(event);
+function renderFunc(percent, displayVal){
+  console.log("displayVal",displayVal);
+  displayVal = parseInt(displayVal)
+  if(displayVal === -1){
+    dateSlot.textContent = "Yesterday"
+  }
+  else if(displayVal === 1){
+    dateSlot.textContent = "Tomorrow"
+  }else{
+  dateSlot.textContent = currentDate();
+}
+  let percentVal = parseInt(percent);
   if(percentVal > 0 && percentVal < 40) {     
     progMsg.innerHTML = `&nbsp Great work so far! &#128079;`;
   }
@@ -293,13 +317,13 @@ function progMessage(event){
     progMsg.innerHTML = `&nbsp Congrats! &#127881 You completed all your goals! `
   }
 }
-var inputEle = document.getElementById('timeInput');
+
 
 
 
 
 editModalClose.addEventListener("click", hideEditModal);
-rightArrow.addEventListener("click", nextDay);
-leftArrow.addEventListener("click", prevDay);
+// rightArrow.addEventListener("click", nextDay);
+// leftArrow.addEventListener("click", prevDay);
 modalBtn.addEventListener("click", showModal);
 modalClose.addEventListener("click", hideModal);

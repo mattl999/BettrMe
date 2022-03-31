@@ -37,6 +37,18 @@ async function index(req, res, next) {
       user.yesterday = user.tomorrow;
       user.lastCycled = user.totalDaysElapsed
     }
+
+    if(user.displayVal === 0){
+      user.displaying = user.today;
+    }
+    else if(user.displayVal === 1){
+      user.displaying = user.tomorrow;
+      
+    }
+    else if(user.displayVal === -1){
+      user.displaying = user.yesterday;  
+    }
+    
     user.save();
   }
   res.render("../views/index", {
@@ -189,8 +201,41 @@ async function introForm(req, res) {
     console.log(err);
   }
 }
+async function changeView(req, res){
+  let user = await User.findById(req.params.id);
+  let view = req.params.viewing;
+  console.log("changeView hit")
+  if(view === "today"){
+    user.displaying = user.today;
+    user.displayVal = 0
+  }
+  else if(view === "tomorrow"){
+    user.displaying = user.tomorrow;
+    user.displayVal = 1
+  }
+  else if(view === "yesterday"){
+    user.displaying = user.yesterday;
+    user.displayVal = -1
+
+  }
+  user.save(function (err) {
+    if (err) return console.log(err);
+    return res
+      .status(200)
+      .json({ user: user });
+  });
+
+}
+async function giveDisplayVal(req, res){
+  let user = await User.findById(req.params.id);
+  return res
+      .status(200)
+      .json({ displayVal: user.displayVal });
+}
 
 module.exports = {
+  giveDisplayVal,
+  changeView,
   introForm,
   create,
   index,

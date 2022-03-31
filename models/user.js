@@ -28,6 +28,11 @@ const userSchema = new Schema(
     today: [goalSchema],
     yesterday: [goalSchema],
     tomorrow: [goalSchema],
+    displaying: [goalSchema],
+    displayVal: {
+      type: Number,
+      default: 0,
+    },
     lastRendered: {
       type: String,
       default: null,
