@@ -31,33 +31,15 @@ const currentView = document.getElementById("display");
 const progFill = document.querySelector(".progress-fill");
 const percentNum = document.querySelector(".progress-percent");
 const progMsg = document.querySelector(".progress-message");
-const topMsg = document.querySelector(".top-message")
-// const checkBox = document.querySelectorAll(".checkbox");
+const topMsg = document.querySelector(".top-message");
+const timeInput = document.getElementById('datetime12')
 
-// checkBox.addEventListener("click", toggleComplete);
-// $('.checkbox').click(function(){
-//   $(this).addClass('checked');
-
-// })
-// async function toggleComplete(id){
-//   console.log(id)
-//   var xhttp = new XMLHttpRequest();
-//   xhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-
-//         console.log("hi")
-//     }
-//     xhttp.open("POST", "../routes/toggle", true);
-//   xhttp.send();
-//   }
-// }
-// $.post( url [, data ] [, success ] [, dataType ] )
 
 let v = 0;
 arrows.currentDay = 0;
-
+let array = [];
 function nextDay(evt) {
-  console.log(evt);
+ 
   arrows.currentDay++;
   console.log(arrows.currentDay);
   if (arrows.currentDay > 1) {
@@ -65,20 +47,28 @@ function nextDay(evt) {
   }
   if (arrows.currentDay === 1) {
     dateSlot.textContent = "Tomorrow";
-    console.log("hit");
+    console.log("tomorrow");
     rightArrow.style.visibility = "hidden";
     rightArrow.style.opacity = "0";
+    rightArrow.style.pointerEvents = 'none';
+
     let t = "tomorrow";
     currentView.setAttribute("current-view", t);
 
-    let array = currentView.getAttribute("data-tomorrow");
-    console.log(array);
+    array = currentView.getAttribute("data-tomorrow");
+    console.log("data-tomorrow",typeof(array));
     //  await axios.get('/goals/view/'+t, {user: u,})
     //  window.location.replace('/');
   } else {
     currentDate();
+    array = currentView.getAttribute("data-today");
+    console.log("data-today",array);
+
+    console.log("today")
     leftArrow.style.visibility = "visible";
     leftArrow.style.opacity = "1";
+    leftArrow.style.pointerEvents = 'auto'
+
   }
 }
 function prevDay(v) {
@@ -89,12 +79,20 @@ function prevDay(v) {
   }
   if (arrows.currentDay === -1) {
     dateSlot.textContent = "Yesterday";
-    console.log("hit");
+    console.log("Yesterday");
+    array = currentView.getAttribute("data-yesterday");
+    console.log(array)
     leftArrow.style.visibility = "hidden";
     leftArrow.style.opacity = "0";
+    leftArrow.style.pointerEvents = 'none';
   } else {
+    console.log("today");
+    array = currentView.getAttribute("data-yesterday");
+    console.log(array)
     rightArrow.style.visibility = "visible";
     rightArrow.style.opacity = "1";
+    rightArrow.style.pointerEvents = 'auto'
+    
     currentDate();
   }
 }
@@ -206,7 +204,17 @@ async function confirmEdit(event) {
   window.location.replace("/");
   hideEditModal();
 }
-
+async function wakeUpEdit(event) {
+  u = event.target.getAttribute("queryUser");
+  
+  console.log("asdfasdfasdfa", u);
+  await axios.post("/intro/?_method=PUT", {
+    user: u,
+  });
+  // $.put('/goals/'+g, {activity:activity, id: g})
+  window.location.replace("/");
+  
+}
 async function deleteObject(event) {
   u = event.target.getAttribute("queryUser");
 
@@ -240,19 +248,16 @@ async function toggler(event) {
       method: "PUT",
       user: u,
     }).then((response) => response.json());
-    console.log("front-end res -->", res);
+   
     res.completed
       ? event.target.querySelector("img").setAttribute("class", "checkmark")
       : event.target
           .querySelector("img")
           .setAttribute("class", "checkmark invisible");
-    // get the element with the number of votes
-
     progFill.style.width = res.percent;
     percentNum.textContent = res.percent;
     let percentVal = parseInt(res.percent);
-    console.log("hullo",percentVal);
-
+    
     if (!percentVal) {
       progMsg.innerHTML = `&nbsp Time to get started on those goals`;
     } 
@@ -261,18 +266,12 @@ async function toggler(event) {
       progMsg.innerHTML = `&nbsp Great work so far! &#128079;`;
     }
     if(percentVal > 40 && percentVal < 70) {     
-      console.log("hit 1") 
       progMsg.innerHTML = `&nbsp Keep it up! You're doing awesome &#128526;`;
     }
     if(percentVal > 70 && percentVal < 100) {     
-      
-      console.log("hit 2") 
-
       progMsg.innerHTML = `&nbsp You're almost there! &#128170`;
     }
     if(percentVal === 100) {
-      console.log("hit 3") 
-
       progMsg.innerHTML = `&nbsp Congrats! &#127881 You completed all your goals! `
     }
   } catch (err) {
@@ -280,30 +279,23 @@ async function toggler(event) {
   }
 }
 function progMessage(event){
-  // console.log(event.target)
   let percentVal = parseInt(event);
-  
-  
   if(percentVal > 0 && percentVal < 40) {     
-    console.log("hit 1") 
     progMsg.innerHTML = `&nbsp Great work so far! &#128079;`;
   }
   if(percentVal > 40 && percentVal < 70) {     
-    console.log("hit 1") 
     progMsg.innerHTML = `&nbsp Keep it up! You're doing awesome &#128526;`;
   }
   if(percentVal > 70 && percentVal < 100) {     
-    
-    console.log("hit 2") 
-
     progMsg.innerHTML = `&nbsp You're almost there! &#128170`;
   }
   if(percentVal === 100) {
-    console.log("hit 3") 
-
     progMsg.innerHTML = `&nbsp Congrats! &#127881 You completed all your goals! `
   }
 }
+var inputEle = document.getElementById('timeInput');
+
+
 
 
 editModalClose.addEventListener("click", hideEditModal);

@@ -28,9 +28,11 @@
     <link rel="stylesheet" href="/stylesheets/modal.css">
     <link rel="stylesheet" href="/stylesheets/editModal.css">
     <link rel="stylesheet" href="/stylesheets/sidebar.css">
+    <link rel="stylesheet" href="/stylesheets/introModal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="/javascripts/frontEnd.js"></script>
+    
   </head>
   <body onload="progMessage('<%= user.percent %>')" >
 
@@ -80,6 +82,7 @@
     <!-- sidebar -->
      <div class="sidebar">
         <div id="side-goal-list">
+          <p>streak= <%=user.streak %></p>
   <% user.today.forEach(function(g) { %>
           <div class="side-goal-container">
             <div class="side-goal-activity">
@@ -154,67 +157,108 @@
 
    <!-- create modal -->
 
-   <div class="modal-bg ">
-     <div class="edit-modal"> 
-      <div class="l-margin margin">
-        <div class="hole first-hole"></div>
-        <div class="hole second-hole"></div>
-        <div class="hole third-hole"></div>
-       </div>
-       <div class="r-margin margin"></div>
-      <div class="modal-title">
-        <span class="card-title">Enter your new Goal  :</span>
-
+    <div class="modal-bg ">
+      <div class="edit-modal"> 
+        <div class="l-margin margin">
+          <div class="hole first-hole"></div>
+          <div class="hole second-hole"></div>
+          <div class="hole third-hole"></div>
+        </div>
+        <div class="r-margin margin"></div>
+        <div class="modal-title">
+          <span class="card-title">Enter your new Goal  :</span>
+        </div>
+        <div class="edit-info-container">
+          <form action="/" method="post">
+            <input autocomplete="off" id="modal-input" type="text" name="activity" >
+            <div class="edit-btn-container">
+            <button class="edit-submit" type="submit">Submit</button>
+            </div>
+            <div class="modal-close">
+              <span >x</span>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="edit-info-container">
-       <form action="/" method="post">
-      
+    </div>
        
-       <input autocomplete="off" id="modal-input" type="text" name="activity" >
-       <div class="edit-btn-container">
-       <button class="edit-submit" type="submit">Submit</button>
+      <!-- edit modal -->
+    <div class="edit-modal-bg ">
+      <div class="edit-modal">
+        <div class="l-margin margin">
+          <div class="hole first-hole"></div>
+          <div class="hole second-hole"></div>
+          <div class="hole third-hole"></div>
+        </div>
+        <div class="r-margin margin"></div>
+        <div class="modal-title">
+          <span class="card-title">Edit Goal  :</span>
+        </div>
+        <div class="edit-info-container">
+          <input autocomplete="off" id="edit-modal-input" type="text" name="activity">
+          <div class="edit-modal-close">
+            <span >x</span>
+          </div>
+        </div>
+          <!-- buttons -->
+        <div class="edit-btn-container">
+          <button onclick ="deleteObject(event)" queryUser= "<%= user.id %>"  class="delete edit-submit">Delete</button>
+          <button onclick ="confirmEdit(event)" queryUser= "<%= user.id %>"  class="edit-submit">Edit</button>
+        </div>
       </div>
-       <div class="modal-close">
-         <span >x</span>
+    </div>
+              
+              <!-- intro modal -->
+    <%if(!user.wakeUp) { console.log("oof")%>
+      <div class="intro-modal-bg bg-active">
+        <div class="intro-modal">  
+          <div class="intro-modal-title"> 
+            Welcome to BettrMe! 
+          </div>
+          <div class="message-container">
+            <div class="intro-message">
+              This app is designed to help you improve yourself! </br></br>Forming healthy habits is a great way improve quality of life and become the person you want to be! </br> </br> Let's start by getting to know you a bit better: 
+            </div>
+          </div>
+          <form class="intro-form" action="/intro/<%= user.id %>?_method=PUT" method="POST">
+            
+            <div class="prompt">
+              What should we call you?
+            </div>
+            <input autocomplete="off" class="intro-modal-input" type="text" name="name" >
+            <div class="prompt ">
+              What time do you typically start your day?
+            </div>
+              <div class="time-input-container">
+              <input class="intro-modal-input wake-up"  type="time" name="wakeUp" >
+              <label for="meridian"></label>            
+              <select name="meridian" id="meridian">
+                <option value="am">AM</option>
+                <option value="pm">PM</option>
+              </select>
+              </div>
+            <div class="intro-btn-container">
+              <button type="submit" queryUser= "<%= user.id %>"  class="intro-submit">Begin</button>
+            </div>
+              
+          
         </form>
       </div>
-        </div>
-
-     </div>
-
-     <!-- edit modal -->
-   </div>
-   <div class="edit-modal-bg ">
- 
-    <div class="edit-modal">
-      <div class="l-margin margin">
-        <div class="hole first-hole"></div>
-        <div class="hole second-hole"></div>
-        <div class="hole third-hole"></div>
-       </div>
-       <div class="r-margin margin"></div>
-      <div class="modal-title">
-        <span class="card-title">Edit Goal  :</span>
-
-      </div>
-     <div class="edit-info-container">
-      
-      
-      <input autocomplete="off" id="edit-modal-input" type="text" name="activity">
-      <div class="edit-modal-close">
-        <span >x</span>
-       </div>
-      </div>
-      <!-- buttons -->
-      <div class="edit-btn-container">
-      <button onclick ="deleteObject(event)" queryUser= "<%= user.id %>"  class="delete edit-submit">Delete</button>
-      <button onclick ="confirmEdit(event)" queryUser= "<%= user.id %>"  class="edit-submit">Edit</button>
     </div>
+  <% } %>
+              
+             
+             
+         
+
       
+
       
 
     </div>
   </div>
 
   </body>
-</html>
+  
+  </html>
+ 

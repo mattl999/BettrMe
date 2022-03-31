@@ -1,0 +1,10 @@
+What is the goal?
+
+
+2. Perform daily shift at this time:
+	- Shift tomorrows goals to today
+	- Shift todays goals to yesterday
+	- Delete yesterday's goals
+3. If all goals completed, add to streak, else reset streak
+4. Hook up calendar arrows to work
+	
