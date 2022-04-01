@@ -61,6 +61,14 @@
     transition: 0.2s;
     height: 66.9vh;
     }
+  .calendar-side:hover{
+    background-color: rgb(230, 230, 230);
+    cursor: pointer;  
+    }
+    .calendar-side:active{
+      background-color: rgb(184, 184, 184);
+      cursor: pointer;  
+      }
   .arrow:hover{
   background-color: #ccc;
   cursor: pointer;

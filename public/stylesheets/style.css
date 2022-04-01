@@ -108,12 +108,7 @@ h1 {
   transition-timing-function: linear;
   transition: 0.2s;
 }
-.calendar-side:hover{
-background-color: rgb(230, 230, 230);
-cursor: pointer;
 
-
-}
 .goal-list {
   grid-column-start: 2;
   grid-row-start: 1;

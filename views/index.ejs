@@ -117,10 +117,9 @@
             <div class="goal-list">              
               <div id='display'>
                 
-                <% user.displaying.forEach(function(g, i) { %>
-                
+                <% user.displaying.forEach(function(g, i) { %>                
                   <div class='goal-container'>                      
-                    <button onclick='toggler(event)' dataId='<%= g.id %>' queryUser='<%= user.id %>' class='checkbox' >
+                    <button onclick="<%= user.displayVal ? '' : 'toggler(event)' %>" style="<%= user.displayVal ? 'cursor:default' : '' %>" dataId='<%= g.id %>' queryUser='<%= user.id %>' class='checkbox' >
                         <% if (g.completed){ %>
                         <img class = 'checkmark ' src='images/checkmark 3.png'>
                         <% } else { %>
@@ -152,7 +151,6 @@
    </div>
 
    <!-- create modal -->
-
     <div class="modal-bg ">
       <div class="edit-modal"> 
         <div class="l-margin margin">
