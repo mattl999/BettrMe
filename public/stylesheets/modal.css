@@ -17,15 +17,7 @@
     font-size: 40px;
     font-family: 'Indie Flower', cursive;
     padding-left: 10px;
-}
-#modal-input:focus{
-   
-    /* background: linear-gradient(to left, rgba(184, 9, 9,0), rgba(255, 255, 255,.9) .5%, rgba(255, 255, 255,.9) 99.5%, transparent 100%);
-    background-color: rgba(255, 255, 255,.9); */
-/* outline:1px solid #959ceb; */
-/* outline:2px solid rgba(149, 156, 235,.3);
-border-radius: 2px; */
-outline:none;
+    outline:none;
 }
 .modal-bg{
     position:fixed;

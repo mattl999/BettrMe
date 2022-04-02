@@ -1,0 +1,168 @@
+:root{
+    --side-border: #336be4
+}
+.right-side-container{
+     display: grid;
+     grid-template-rows: 12% 30% 25% 30%;
+}
+.streak-val-container{
+    align-items: center;
+}
+.streak-val-box{
+    width:85%;
+    height: 60%;
+    margin-top: 9%;
+    color:white;
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+    background-color:rgb(123, 172, 172);
+    /* background-color: rgba(51, 107, 228,.7);
+    background: radial-gradient(circle at center, #1e88a5 0 , #1e8ca5 70% , #1e76a5 100%); */
+    font-size: 23px;
+    border: 1px solid var(--side-border);
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fire{
+    height: 30px;
+    margin-left:1vh;
+}
+.streak-visual-container{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.box-header{
+    background-color: var(--side-border);
+    border-radius: 10px 10px 0 0;
+     
+    color: rgb(228, 227, 255);
+    font-family: "Outfit", sans-serif;
+    padding-left: 1vw;
+    font-size: 1.7vh;
+}
+.streak-visual-box{
+    width:85%;
+    height: 85%;
+    background-color:rgb(123, 172, 172);
+    border: 1px solid var(--side-border);
+    border-radius: 14px;
+    display: grid;
+    grid-template-rows: 2.4vh 1fr;
+}
+.streak-visual-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.streak-visual{
+    width:97%;
+    height:85%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.streak-visual-day {
+    width: 14%;
+    height: 19.2%;
+    color: white;
+    border:1px solid rgba(216, 216, 216, 0.818);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.no-top{
+border-top:none;
+}
+.no-left{
+border-left:none;
+    
+}.no-right{
+border-right:none;
+    
+}.no-bottom{
+border-bottom:none;
+    
+}
+.red-circle{
+    
+    border-radius: 50%;
+    position: relative;
+    width: 30%;
+    height: 0;
+    padding-bottom: 30%;
+    background-color: rgb(153, 47, 47);
+   
+}
+.info-div-container{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.info-div-box{
+    width:85%;
+    height: 85%;
+    background-color:rgb(123, 172, 172);
+    border: 1px solid var(--side-border);
+    border-radius: 14px;
+    display: grid;
+    grid-template-rows: 2.4vh 1fr;
+}
+.quote-container{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.quote-box{
+    width:85%;
+    height: 85%;
+    background-color:rgb(123, 172, 172);
+    border: 1px solid var(--side-border);
+    border-radius: 14px;
+    display: grid;
+    grid-template-rows: 2.4vh 1fr;
+}
+.quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10%;
+    padding-top:1vh;
+    color: white;
+    text-align: center;
+    overflow-y: scroll;
+    height:100%;
+    box-sizing: border-box;
+    display: flex;    
+  }
+ 
+  .quote::-webkit-scrollbar {
+    width: 8px;
+  }
+  .quote::-webkit-scrollbar-track {
+    background: rgba(234, 221, 251, 0);
+    border-radius: 20px;
+    /* color of the tracking area */
+  }
+  .quote::-webkit-scrollbar-thumb {
+    background-color: rgba(105, 105, 105, 0.5); /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+  }
+  .quote-text {
+    font-family: "Bebas Neue", cursive;
+    font-size: 3vh;
+    margin: 0;
+    max-width: 25vw;
+    text-align: inherit;
+  }
+  .author {
+    font-family: "Bebas Neue", cursive;
+    font-size: 2.5vh;
+    margin-top: 1vh;
+  }

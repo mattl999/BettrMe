@@ -29,13 +29,18 @@
     <link rel="stylesheet" href="/stylesheets/editModal.css">
     <link rel="stylesheet" href="/stylesheets/sidebar.css">
     <link rel="stylesheet" href="/stylesheets/introModal.css">
+    <link rel="stylesheet" href="/stylesheets/rightSide.css">
+   
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="https://unpkg.com/ejs@3.1.6/ejs.min.js"></script>
     <script defer src="/javascripts/frontEnd.js"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js"></script>
+    
+
   </head>
-  <body onload="renderFunc('<%= user.percent %>', '<%= user.displayVal %>')" >
+  <body onload="renderFunc('<%= user.percent %>', '<%= user.displayVal %>', '<%= user.totalDaysElapsed %>')" >
 
     <!-- navbar  -->
     <nav class= "top-bar">
@@ -83,7 +88,7 @@
     <!-- sidebar -->
      <div class="sidebar">
         <div id="side-goal-list">
-          <p>streak= <%=user.streak %></p>
+         
   <% user.today.forEach(function(g) { %>
           <div class="side-goal-container">
             <div class="side-goal-activity">
@@ -143,13 +148,79 @@
         </div>
      </div>
 
-     <!-- quote section -->
-     <div class="quote">
-      <p class="quote-text"> He who conquers himself is the mightiest warrior   </p> 
-      <p class="author">— Confucius </p>
-     </div>
-   </div>
+     <!-- right-side -->
+     <div class="right-side-container">
+       <div class="streak-val-container">
+        <div class="streak-val-box">
+        
+        <p>Streak : <%=user.streak %></p>
+        <% if(user.streak){ %>
+        <img src="images/fire.png" class='fire' alt="">
+        <% } %>
+        </div>
+       </div>
+       <div class="streak-visual-container">
+        <div class="streak-visual-box">
+          <div class="box-header">
+            30-day Challenge
+          </div>
+          <div class="streak-visual-wrapper">
+            <div class="streak-visual">
+              
+              <% for(i = 0; i < 30 ; i++){ %> 
+                <% if(i === 0){ %>
+                  <div class="streak-visual-day no-top no-left">
+                <% }else if(i > 0 && i < 5){ %>
+                  <div class="streak-visual-day no-top ">
+                <% } else if(i === 5){%>
+                  <div class="streak-visual-day no-top no-right">
+                <% } else if(i === 6 || i === 12 || i === 18 ){%>
+                  <div class="streak-visual-day no-left">
+                <% } else if(i === 5 || i === 11 || i === 17 || i === 23){ %>
+                  <div class="streak-visual-day no-right">
+                <% } else if(i > 24 && i < 29){ %>
 
+                  <div class="streak-visual-day no-bottom">
+                <% } else if(i === 24){ %>
+
+                  <div class="streak-visual-day no-bottom no-left"> 
+                <% } else if(i === 29){ %>
+
+                  <div class="streak-visual-day no-bottom no-right">   
+                <%} else{ %>
+                <div class="streak-visual-day">
+                <% } %>
+                <% if(i < user.streak){ %>
+                  <div class="red-circle"></div>
+                  <% } %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+       </div>
+       <div class="info-div-container">
+         <div class="info-div-box">
+          <div class="box-header">
+            Info
+          </div>
+         </div>
+       </div>
+    <div class="quote-container">
+      <div class="quote-box">
+        <div class="box-header">
+            Daily Quote
+          </div>
+     <div class="quote">
+      <p class="quote-text"> 
+        <%= quotes[user.totalDaysElapsed % 30].quote %>  
+      </p> 
+      <p class="author"><%= quotes[user.totalDaysElapsed % 30].author %> </p>
+     </div>
+    </div>
+    </div>
+   </div>
+  </div>
    <!-- create modal -->
     <div class="modal-bg ">
       <div class="edit-modal"> 

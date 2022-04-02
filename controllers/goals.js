@@ -1,8 +1,146 @@
 const User = require("../models/user");
 const { DateTime } = require("luxon");
 
-var Time = DateTime;
 
+var Time = DateTime;
+const quotes = [
+  {
+    quote:
+      "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+    author: "- Aristotle",
+  },
+  {
+    quote: "He who conquers himself is the mightiest warrior",
+    author: "- confucius",
+  },
+  {
+    quote:
+      "Life is like riding a bicycle. To keep your balance you must keep moving.",
+    author: "- Albert Einstein",
+  },
+  {
+    quote: "Either you run the day or the day runs you.",
+    author: "- Jim Rohn",
+  },
+  {
+    quote: "Goal setting is the secret to a compelling future.",
+    author: "- Tony Robbins",
+  },
+  {
+    quote:
+      "I’m a greater believer in luck, and I find the harder I work the more I have of it.",
+    author: "- Thomas Jefferson",
+  },
+  {
+    quote:
+      "When we strive to become better than we are, everything around us becomes better too.",
+    author: "- Paulo Coelho",
+  },
+  {
+    quote:
+      "You've got to get up every morning with determination if you're going to go to bed with satisfaction.",
+    author: "- George Lorimer",
+  },
+  {
+    quote:
+      "The most difficult thing is the decision to act, the rest is merely tenacity.",
+    author: "- Amelia Earhart",
+  },
+  {
+    quote: "It is never too late to be what you might have been.",
+    author: "- George Eliot",
+  },
+  {
+    quote:
+      "I am not a product of my circumstances. I am a product of my decisions.",
+    author: "- Stephen R. Covey",
+  },
+  {
+    quote:
+      "You cannot plow a field by turning it over in your mind. To begin, begin.",
+    author: "- Gordon B. Hinckley",
+  },
+  {
+    quote: "Inspiration does exist, but it must find you working.",
+    author: "- Pablo Picasso",
+  },
+  {
+    quote:
+      "Someone's sitting in the shade today because someone planted a tree a long time ago.",
+    author: "- Warren Buffet",
+  },
+  {
+    quote: "True freedom is impossible without a mind made free by discipline.",
+    author: "- Mortimer J. Adler",
+  },
+  {
+    quote: "Set your goals high, and don’t stop till you get there.",
+    author: "- Bo Jackson",
+  },
+  {
+    quote: "If you can't yet do great things, do small things in a great way.",
+    author: "- Napoleon Hill",
+  },
+  {
+    quote:
+      "I do not try to dance better than anyone else. I only try to dance better than myself.",
+    author: "- Arianna Huffington",
+  },
+  {
+    quote:
+      "When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.",
+    author: "- Henry Ford",
+  },
+  {
+    quote: "Ideation without execution is delusion",
+    author: "- Robin Sharma",
+  },
+  {
+    quote: "It is a rough road that leads to the heights of greatness.",
+    author: "- Lucius Annaeus Seneca",
+  },
+  {
+    quote:
+      "For the great doesn’t happen through impulse alone, and is a succession of little things that are brought together.",
+    author: "- Vincent van Gogh",
+  },
+  {
+    quote: "If there is no struggle, there is no progress.",
+    author: "- Frederick Douglass",
+  },
+  {
+    quote:
+      "First forget inspiration. Habit is more dependable. Habit will sustain you whether you're inspired or not. Habit will help you finish and polish your stories. Inspiration won't. Habit is persistence in practice.",
+    author: "- Octavia Butler",
+  },
+  {
+    quote:
+      "If you don’t like the road you’re walking, start paving another one.",
+    author: "- Dolly Parton",
+  },
+  {
+    quote: "No one changes the world who isn’t obsessed.",
+    author: "- Billie Jean King",
+  },
+  {
+    quote:
+      "Some people want it to happen, some wish it would happen, others make it happen.",
+    author: "- Michael Jordan",
+  },
+  {
+    quote:
+      "Get a good idea and stay with it. Dog it, and work at it until it’s done right.",
+    author: "- Walt Disney",
+  },
+  {
+    quote: "There is nothing impossible to they who will try.",
+    author: "- Alexander the Great",
+  },
+  {
+    quote: "You are never too old to set another goal or to dream a new dream.",
+    author: "- Malala Yousafzai",
+  },
+];
 async function index(req, res, next) {
   let user = req.user;
   if (user.wakeUp) {
@@ -13,9 +151,11 @@ async function index(req, res, next) {
     let dt2 = DateTime.fromISO(user.initiation);
     let difference = dt.diff(dt2);
     let diffMills = difference.values.milliseconds;
-    // user.totalDaysElapsed = Math.floor(diffMills / 86400000);
+    user.totalDaysElapsed = Math.floor(diffMills / 86400000);
     
+
     console.log("suwoop", user.totalDaysElapsed)
+   
     if(user.totalDaysElapsed - 1 === user.lastCycled){
       console.log("smash hit")
       if(user.percent === "100%"){
@@ -53,20 +193,13 @@ async function index(req, res, next) {
   }
   res.render("../views/index", {
     user: user,
+    quotes:quotes,
   });
 }
 function create(req, res) {
   let done = 0;
   console.log("req.body--->", req.body);
   console.log("req.user--->", req.user);
-  // const goal = new Goal(req.body);
-
-  // goal.save(function (err) {
-
-  // });
-  // console.log(User.find({}))
-  // User.findById({}(req.body);
-
   req.user.today.push(req.body);
   req.user.tomorrow.push(req.body);
   req.user.today.forEach(function (goal) {
@@ -142,6 +275,12 @@ async function deleteGoal(req, res) {
       done++;
     }
   });
+  user.tomorrow.splice(idx, 1);
+  user.tomorrow.forEach(function (goal) {
+    if (goal.completed) {
+      done++;
+    }
+  });
   user.percent = String((done / user.today.length).toFixed(2) * 100).concat(
     "%"
   );
@@ -194,6 +333,15 @@ async function introForm(req, res) {
 
     let time = req.body.wakeUp.concat(":", req.body.meridian);
     user.initiation = DateTime.fromObject({ hour: wakeUpHour });
+
+    let dt = DateTime.fromISO(Time.now().toISO());
+    let dt2 = DateTime.fromISO(user.initiation);
+    let difference = dt.diff(dt2);
+    console.log(Time.now())
+    console.log(user.initiation)
+    if(difference < 0 ){
+      user.initiation = DateTime.fromObject({ hour: wakeUpHour }).minus({ days: 1 });
+    }
     user.wakeUp = time;
     await user.save();
     res.redirect("/");

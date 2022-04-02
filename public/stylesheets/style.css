@@ -62,29 +62,9 @@ h1 {
   display: grid;
   grid-template-rows: 85% 15%;
 }
-.calendar-wrapper {
-  
-}
-.quote {
- 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10% 20% 10% 10%;
-}
-.quote-text {
-  font-family: "Bebas Neue", cursive;
-  font-size: 2.4vw;
-  margin: 0;
-  max-width: 25vw;
-  text-align: inherit;
-}
-.author {
-  font-family: "Bebas Neue", cursive;
-  font-size: 1.5vw;
-  margin-top: 1vh;
-}
+
+
+
 
 .calendar-top {
   background-color: rgb(153, 47, 47);
