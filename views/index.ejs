@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/stylesheets/sidebar.css">
     <link rel="stylesheet" href="/stylesheets/introModal.css">
     <link rel="stylesheet" href="/stylesheets/rightSide.css">
+    
    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -59,17 +60,12 @@
         <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
       </svg>
-      <div id="currentTime"></div>
+      <div id="currentTime"><%= newTime %></div>
     </div>
-    <div class='top-message'>Good <span class="time-word"> Morning </span>
+    <div class='top-message'>Good <span class="time-word"> <%= timeWord %></span>
       <%= user.name.split(" ")[0] %>. 
       <div class="progress-message">
-      <% if(!user.today.length){ %>
-        &nbsp You can set new goals by clicking the green button! 
-        
-      <% } else if(!parseInt(user.percent)){ %>
-        Time to get started on those goals!
-        <% } %>
+      <%- msg %>
       </div>
     </div>
    <div class="progress-section-container">
@@ -95,13 +91,14 @@
               <p> <%= g.activity %></p>
             </div>
             <div class="side-goal-links">
-              <a onclick= "showEditModal(event)" data-activity-id="<%= g.activity %>" data-id="<%= g.id %>" class="edit-btn">Edit</a>
+              <a onclick= "showEditModal(event)" data-activity-id="<%= g.activity %>" data-id="<%= g.id %>" queryUser="<%= user.id %>" infoStage="<%= user.infoStage %>" class="<%= parseInt(user.infoStage) === 1 ? 'edit-btn pulse' : 'edit-btn ' %>">Edit</a>
             </div>
           </div>
     <% }); %>
 </div>
 <div id= side-btn-div>
-<button class="modal-btn">Create New Goal</button>
+  <% console.log(user.infoStage) %>
+<button onclick="stopAnimation()" class="<%= parseInt(user.infoStage) === 0 ? 'modal-btn createPulse' : 'modal-btn ' %>">Create New Goal</button>
 </div>
      </div>
 
@@ -109,7 +106,13 @@
      <div class="calendar-wrapper">
         <div class="calendar">
           <div class="calendar-top">
-           
+            <% if( user.displayVal === -1){ %>
+              Yesterday
+            <% } else if ( user.displayVal === 0){ %>
+              <%= time %>             
+            <% } else { %>
+              Tomorrow
+            <% } %>
           </div>
 
           <div class="calendar-body">
@@ -124,7 +127,7 @@
                 
                 <% user.displaying.forEach(function(g, i) { %>                
                   <div class='goal-container'>                      
-                    <button onclick="<%= user.displayVal ? '' : 'toggler(event)' %>" style="<%= user.displayVal ? 'cursor:default' : '' %>" dataId='<%= g.id %>' queryUser='<%= user.id %>' class='checkbox' >
+                    <button onclick="<%= user.displayVal ? '' : 'toggler(event)' %>" style="<%= user.displayVal ? 'cursor:default' : '' %>" dataId='<%= g.id %>' queryUser='<%= user.id %>' infoStage="<%= user.infoStage %>" class="<%= parseInt(user.infoStage) === 2 ? 'checkbox checkboxPulse' : 'checkbox' %>" >
                         <% if (g.completed){ %>
                         <img class = 'checkmark ' src='images/checkmark 3.png'>
                         <% } else { %>
@@ -155,7 +158,8 @@
         
         <p>Streak : <%=user.streak %></p>
         <% if(user.streak){ %>
-        <img src="images/fire.png" class='fire' alt="">
+        <!-- <img src="images/fire.png" class='fire' alt=""> -->
+        <span> 🔥 </span>
         <% } %>
         </div>
        </div>
@@ -200,9 +204,26 @@
         </div>
        </div>
        <div class="info-div-container">
-         <div class="info-div-box">
-          <div class="box-header">
-            Info
+         <div class="<%= parseInt(user.infoStage) < 5 ? 'info-div-box border-red' : 'info-div-box'%>">
+          <div class="<%= parseInt(user.infoStage) < 5 ? 'info-box-header info-red' : 'info-box-header'%>" >
+            info
+          </div>
+          <div class="info-container">
+            <div class="<%= parseInt(user.infoStage) < 5 ? 'info-pulse' : 'info'%>">
+            <% if(!user.infoStage){ %>
+              You can create new goals by clicking the <span class="green"> big green button </span>(or whatever color kioko chooses) in the bottom left corner of the screen. Let's create our first daily goal!
+              <% } else if(user.infoStage === 1){ %>
+                Congrats on creating your first goal! To <span class="green"> modify </span> or <span class="red"> delete </span> a goal, click the edit button matching the goal you want to change.
+              <% } else if(user.infoStage === 2){ %>
+                You're getting the hang of it! Once you complete a daily goal, you can click the <span class="grey"> grey box </span> beside that goal to mark it as complete. Give it a try, just for fun :) 
+              <% } else if(user.infoStage === 3){ %>
+                If you complete all of your daily goals, your streak will be increased by 1 when you come back tomorrow! Click <button class="edit-btn smol" onclick="streakDemo(event)" queryUser="<%= user.id %>">here</button> to see what it looks like when you build a big streak!
+              <% } else if(user.infoStage === 4){ %>
+                Now that you know the ropes, your journey of self-improvement can begin! Click <button class="edit-btn smol" onclick="resetStreak(event)" queryUser="<%= user.id %>">here</button> to set your streak back to normal. From now on this box will provide interesting facts and information.
+              <% } else if(user.infoStage > 4){ %>
+                Helloooooooo
+              <% } %>
+                </div>
           </div>
          </div>
        </div>
@@ -224,7 +245,7 @@
    <!-- create modal -->
     <div class="modal-bg ">
       <div class="edit-modal"> 
-        <div class="l-margin margin">
+        <div class="l-margin margin">  
           <div class="hole first-hole"></div>
           <div class="hole second-hole"></div>
           <div class="hole third-hole"></div>
@@ -274,7 +295,7 @@
     </div>
               
               <!-- intro modal -->
-    <%if(!user.wakeUp) { console.log("oof")%>
+    <%if(!user.wakeUp) { %>
       <div class="intro-modal-bg bg-active">
         <div class="intro-modal">  
           <div class="intro-modal-title"> 
@@ -304,25 +325,14 @@
               </div>
             <div class="intro-btn-container">
               <button type="submit" queryUser= "<%= user.id %>"  class="intro-submit">Begin</button>
-            </div>
-              
-          
+            </div>    
         </form>
       </div>
     </div>
   <% } %>
-              
-             
-             
-         
-
-      
-
-      
-
-    </div>
   </div>
-
+  </div>
+ 
   </body>
   
   </html>

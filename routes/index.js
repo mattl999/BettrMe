@@ -7,13 +7,18 @@ const goalCtrl = require("../controllers/goals");
 router.get("/", isLoggedIn, goalCtrl.index);
 
 //CRUD Routes
-router.post("/", goalCtrl.create);
-router.put('/goals/:id',goalCtrl.submitEdit)
-router.delete('/goals/:id',goalCtrl.deleteGoal)
-router.put('/goals/toggle/:id/:user',goalCtrl.toggler)
-router.put('/intro/:id', goalCtrl.introForm)
-router.put('/change/:viewing/:id', goalCtrl.changeView)
-router.get('/getDisplayVal/:id', goalCtrl.giveDisplayVal)
+router.post("/",isLoggedIn, goalCtrl.create);
+router.put('/goals/:id',isLoggedIn,goalCtrl.submitEdit)
+router.delete('/goals/:id',isLoggedIn,goalCtrl.deleteGoal)
+router.put('/goals/toggle/:id/:user',isLoggedIn,goalCtrl.toggler)
+router.put('/intro/:id',isLoggedIn, goalCtrl.introForm)
+router.put('/change/:viewing/:id',isLoggedIn, goalCtrl.changeView)
+router.get('/getDisplayVal/:id',isLoggedIn, goalCtrl.giveDisplayVal)
+router.put('/editClicked/:id',isLoggedIn,goalCtrl.editClicked)
+router.put('/togglerClicked/:id',isLoggedIn,goalCtrl.togglerClicked)
+router.put('/streakDemo/:id',isLoggedIn,goalCtrl.streakDemo)
+router.put('/resetStreak/:id',isLoggedIn,goalCtrl.resetStreak)
+
 // router.get('/goals/view/:id', goalCtrl.view)
 
 //Oauth Routes

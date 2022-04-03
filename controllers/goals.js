@@ -143,9 +143,45 @@ const quotes = [
 ];
 async function index(req, res, next) {
   let user = req.user;
+  let date = DateTime.now();
+  const format = {...DateTime.DATE_MED_WITH_WEEKDAY,  month: 'long' };
+  let time = date.toLocaleString(format)
+  let msg = ""
+  let timeWord = ""
+  let percentVal = parseInt(user.percent)
+  let t = new Date();
+  let h = parseInt(t.getHours());
+  console.log("hit");
+  newTime = DateTime.now()
+    .setLocale("en-US")
+    .toLocaleString(DateTime.TIME_SIMPLE);
+    
+  if (h >= 4 && h < 12) {
+    timeWord= " Morning";
+  } else if (h >= 12 && h < 18) {
+    timeWord= " Afternoon";
+  } else {
+    timeWord= " Evening";
+  }
+  if (!user.today.length) {
+    msg = `&nbsp You can set new Goals by clicking the green button!`;
+  }
+  else if (percentVal === 0) {
+    msg = `&nbsp Time to get started on those goals!`;
+  }
+  if (percentVal > 0 && percentVal < 40) {
+    msg = `&nbsp Great work so far! &#128079;`;
+  }
+  if (percentVal > 40 && percentVal < 70) {
+    msg = `&nbsp Keep it up! You're doing awesome &#128526;`;
+  }
+  if (percentVal > 70 && percentVal < 100) {
+    msg = `&nbsp You're almost there! &#128170`;
+  }
+  if (percentVal === 100) {
+    msg = `&nbsp Congrats! &#127881 You completed all your goals! `;
+  }
   if (user.wakeUp) {
-    let wakeUpArr = req.user.wakeUp.split(":");
-    let wakeUpHour = parseInt(wakeUpArr[0]);
     user.lastRendered = await Time.now().toISO();
     let dt = DateTime.fromISO(user.lastRendered);
     let dt2 = DateTime.fromISO(user.initiation);
@@ -165,8 +201,7 @@ async function index(req, res, next) {
         user.streak = 0;
         user.percent = "0%";
 
-      }
-      
+      }     
       user.yesterday = user.today;
       user.today = user.tomorrow;
       user.lastCycled = user.totalDaysElapsed;
@@ -188,12 +223,18 @@ async function index(req, res, next) {
     else if(user.displayVal === -1){
       user.displaying = user.yesterday;  
     }
-    
+    ;
     user.save();
+    
   }
+  
   res.render("../views/index", {
     user: user,
     quotes:quotes,
+    time:time,
+    msg:msg,
+    timeWord: timeWord,
+    newTime: newTime,
   });
 }
 function create(req, res) {
@@ -202,6 +243,9 @@ function create(req, res) {
   console.log("req.user--->", req.user);
   req.user.today.push(req.body);
   req.user.tomorrow.push(req.body);
+  if(req.user.infoStage === 0){
+    req.user.infoStage ++;
+  }
   req.user.today.forEach(function (goal) {
     if (goal.completed) {
       done++;
@@ -343,6 +387,7 @@ async function introForm(req, res) {
       user.initiation = DateTime.fromObject({ hour: wakeUpHour }).minus({ days: 1 });
     }
     user.wakeUp = time;
+    user.infoStage = 0;
     await user.save();
     res.redirect("/");
   } catch (err) {
@@ -380,8 +425,48 @@ async function giveDisplayVal(req, res){
       .status(200)
       .json({ displayVal: user.displayVal });
 }
+async function editClicked(req,res){
+  let user = await User.findById(req.params.id);
+  console.log("badaboom",user)
+  user.infoStage ++
+  user.save()
+  return res
+      .status(200)
+      .json({ infoStage: user.infoStage });
+}
+async function togglerClicked(req,res){
+  let user = await User.findById(req.params.id);
+  console.log("chumbawumba")
+  user.infoStage ++
+  user.save()
+  return res
+      .status(200)
+      .json({ infoStage: user.infoStage });
+}
+async function streakDemo(req, res){
+  let user = await User.findById(req.params.id);
+  user.streak = 15
+  user.infoStage ++;
+  user.save()
+  return res
+      .status(200)
+      .json({ streak: user.streak });
+}
 
+async function resetStreak(req, res){
+  let user = await User.findById(req.params.id);
+  user.streak = 0;
+  user.infoStage ++;
+  user.save()
+  return res
+      .status(200)
+      .json({ streak: user.streak });
+}
 module.exports = {
+  resetStreak,
+  streakDemo,
+  togglerClicked,
+  editClicked,
   giveDisplayVal,
   changeView,
   introForm,

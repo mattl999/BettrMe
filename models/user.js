@@ -49,6 +49,10 @@ const userSchema = new Schema(
       type: Number,
       default: 0,
     },
+    infoStage: {
+      type: Number,
+      default: -1,
+    },
   },
   {
     timestamps: true,

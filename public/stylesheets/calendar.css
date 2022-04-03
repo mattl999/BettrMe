@@ -54,6 +54,7 @@
     border-radius: 20px; /* roundness of the scroll thumb */
   }
   
+    
   .calendar-side{
     
     background-color: rgba(221, 221, 221, 0);
@@ -101,6 +102,29 @@
     align-items: center;
     cursor:pointer;
     z-index: 0;
+  }
+  .checkboxPulse{
+    animation: checkboxPulsate;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  }
+  @keyframes checkboxPulsate {
+    0% {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.2);
+          -ms-transform: scale(1.2);
+          transform: scale(1.2);
+         
+    }
+    100% {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
   }
   .invisible{
     visibility: hidden;
