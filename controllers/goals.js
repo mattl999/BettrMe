@@ -290,17 +290,21 @@ async function toggler(req, res) {
 
 async function submitEdit(req, res) {
   console.log("REQ.BODY------->", req.body);
-  User.findById(req.body.user).exec(function (err, obj) {
-    // console.log("obj", obj.today);
-    let focus = obj.today.find(function (goal) {
+  User.findById(req.body.user).exec(function (err, user) {
+   
+    let focus = user.today.find(function (goal) {
       return goal.id === req.params.id;
     });
+    let index = user.today.findIndex((goal) => goal.id === req.params.id
+    );
     focus.activity = req.body.activity;
-    console.log(obj.today);
+    console.log(user.today);
+    console.log('index', index);
+    user.tomorrow[index].activity = req.body.activity;
 
-    obj.save(function (err) {
+    user.save(function (err) {
       if (err) return console.log(err);
-      return res.json(obj.today);
+      return res.json(user.today);
     });
   });
 }

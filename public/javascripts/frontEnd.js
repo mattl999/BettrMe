@@ -70,7 +70,20 @@ function renderFunc(percent, displayVal, totalDaysElapsed) {
   console.log("tot", totalDaysElapsed);
   daysElapsed = totalDaysElapsed;
 }
-
+async function timeWords (){
+  let timeWordage = ""
+  let t = new Date();
+  let h = parseInt(t.getHours());
+  if (h >= 4 && h < 12) {
+    timeWordage= " Morning";
+  } else if (h >= 12 && h < 18) {
+    timeWordage= " Afternoon";
+  } else {
+    timeWordage= " Evening";
+  }
+  timeWord.innerText = timeWordage
+}
+timeWords ();
 async function nextDay(event) {
   let viewing = "";
   let u = event.target.getAttribute("queryUser");
