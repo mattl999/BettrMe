@@ -230,17 +230,20 @@
     </div>
    </div>
   </div>
+
    <!-- create modal -->
     <div class="modal-bg ">
-      <div class="edit-modal">         
+      <div class="modal">         
         <div class="modal-title">
           <span class="card-title">Enter your new Goal  :</span>
         </div>
-        <div class="edit-info-container">
+        <div class="input-container">
           <form action="/" method="post">
             <input autocomplete="off" id="modal-input" type="text" name="activity" >
-            <div class="edit-btn-container">
-            <button class="edit-submit" type="submit">Submit</button>
+            
+            <!-- create-modal-button  -->
+            <div class="btn-container">
+            <button class="submit" type="submit">Submit</button>
             </div>
             <div class="modal-close">
               <span >x</span>
@@ -251,21 +254,22 @@
     </div>
        
       <!-- edit modal -->
-    <div class="edit-modal-bg ">
-      <div class="edit-modal">        
+    <div class="edit-modal-bg bg-active">
+      <div class="modal">        
         <div class="modal-title">
           <span class="card-title">Edit Goal  :</span>
         </div>
-        <div class="edit-info-container">
+        <div class="input-container">
           <input autocomplete="off" id="edit-modal-input" type="text" name="activity">
           <div class="edit-modal-close">
             <span >x</span>
           </div>
         </div>
-          <!-- buttons -->
-        <div class="edit-btn-container">
-          <button onclick ="deleteObject(event)" queryUser= "<%= user.id %>"  class="delete edit-submit">Delete</button>
-          <button onclick ="confirmEdit(event)" queryUser= "<%= user.id %>"  class="edit-submit">Edit</button>
+        
+          <!-- edit-modal-buttons -->
+        <div class="btn-container">
+          <button onclick ="deleteObject(event)" queryUser= "<%= user.id %>"  class="delete submit">Delete</button>
+          <button onclick ="confirmEdit(event)" queryUser= "<%= user.id %>"  class="submit">Edit</button>
         </div>
       </div>
     </div>
@@ -299,8 +303,8 @@
                   <option value="pm">PM</option>
                 </select>
               </div>
-              <div class="intro-btn-container">
-                <button type="submit" queryUser= "<%= user.id %>"  class="intro-submit">Begin</button>
+              <div class="btn-container">
+                <button type="submit" queryUser= "<%= user.id %>"  class="submit">Begin</button>
               </div>    
             </form>
           </div>

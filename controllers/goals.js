@@ -199,7 +199,6 @@ async function index(req, res, next) {
   let percentVal = parseInt(user.percent);
   let t = new Date();
   let h = parseInt(t.getHours());
-  console.log("hit");
   newTime = DateTime.now()
     .setLocale("en-US")
     .toLocaleString(DateTime.TIME_SIMPLE);
@@ -237,10 +236,7 @@ async function index(req, res, next) {
     user.totalDaysElapsed = Math.floor(diffMills / 86400000);
     info = infos[user.totalDaysElapsed % 11];
 
-    console.log("suwoop", user.totalDaysElapsed);
-
     if (user.totalDaysElapsed - 1 === user.lastCycled) {
-      console.log("smash hit");
       if (user.percent === "100%") {
         user.streak++;
         user.percent = "0%";
@@ -280,8 +276,6 @@ async function index(req, res, next) {
 }
 function create(req, res) {
   let done = 0;
-  console.log("req.body--->", req.body);
-  console.log("req.user--->", req.user);
   req.user.today.push(req.body);
   req.user.tomorrow.push(req.body);
   if (req.user.infoStage === 0) {
@@ -305,7 +299,6 @@ async function toggler(req, res) {
     let done = 0;
     let user = await User.findById(req.params.user);
     let toggled = await user.today.find((goal) => goal.id === req.params.id);
-    console.log("total-length", user.today.length);
     toggled.completed
       ? (toggled.completed = false)
       : (toggled.completed = true);
@@ -314,7 +307,6 @@ async function toggler(req, res) {
         done++;
       }
     });
-    console.log("completed ", done);
     user.percent = String((done / user.today.length).toFixed(2) * 100).concat(
       "%"
     );
@@ -330,17 +322,13 @@ async function toggler(req, res) {
 }
 
 async function submitEdit(req, res) {
-  console.log("REQ.BODY------->", req.body);
   User.findById(req.body.user).exec(function (err, user) {
     let focus = user.today.find(function (goal) {
       return goal.id === req.params.id;
     });
     let index = user.today.findIndex((goal) => goal.id === req.params.id);
     focus.activity = req.body.activity;
-    console.log(user.today);
-    console.log("index", index);
     user.tomorrow[index].activity = req.body.activity;
-
     user.save(function (err) {
       if (err) return console.log(err);
       return res.json(user.today);
@@ -348,9 +336,6 @@ async function submitEdit(req, res) {
   });
 }
 async function deleteGoal(req, res) {
-  console.log("req.params.id", req.params.id);
-  console.log("req.body", req.body);
-  console.log("req.user---->", req.user);
   let done = 0;
   let user = req.user;
   let idx = user.today.findIndex(function (goal) {
@@ -374,8 +359,6 @@ async function deleteGoal(req, res) {
   if (user.percent === "NaN%") {
     user.percent = "0%";
   }
-
-  console.log("delete percent--->*", user.percent);
   user.save(function (err) {
     if (err) return console.log(err);
     return res.json({ user: user.today, percent: user.percent });
@@ -383,23 +366,16 @@ async function deleteGoal(req, res) {
 }
 
 async function view(req, res) {
-  console.log(req.body);
   User.findById(req.body.user).exec(function (err, obj) {
     let array = obj[req.body.view];
   });
 }
 async function introForm(req, res) {
-  console.log("OMG YES");
-  console.log(req.params);
-  console.log(req.body);
-
   try {
     let user = await User.findById(req.params.id);
     let wakeUpTime = req.body.wakeUp.concat(":", req.body.meridian);
     let wakeUpArr = wakeUpTime.split(":");
-    console.log(req.body);
     let meridian = wakeUpArr[2];
-    console.log("meridian", meridian);
     let wakeUpHour = parseInt(wakeUpArr[0]);
     if (meridian === "pm") {
       if (!wakeUpHour === 12) {
@@ -414,18 +390,13 @@ async function introForm(req, res) {
         }
       }
     }
-    console.log("booga", wakeUpHour);
-
     user.name = req.body.name;
-
     let time = req.body.wakeUp.concat(":", req.body.meridian);
     user.initiation = DateTime.fromObject({ hour: wakeUpHour });
 
     let dt = DateTime.fromISO(Time.now().toISO());
     let dt2 = DateTime.fromISO(user.initiation);
     let difference = dt.diff(dt2);
-    console.log(Time.now());
-    console.log(user.initiation);
     if (difference < 0) {
       user.initiation = DateTime.fromObject({ hour: wakeUpHour }).minus({
         days: 1,
@@ -442,7 +413,6 @@ async function introForm(req, res) {
 async function changeView(req, res) {
   let user = await User.findById(req.params.id);
   let view = req.params.viewing;
-  console.log("changeView hit");
   if (view === "today") {
     user.displaying = user.today;
     user.displayVal = 0;
@@ -464,14 +434,12 @@ async function giveDisplayVal(req, res) {
 }
 async function editClicked(req, res) {
   let user = await User.findById(req.params.id);
-  console.log("badaboom", user);
   user.infoStage++;
   user.save();
   return res.status(200).json({ infoStage: user.infoStage });
 }
 async function togglerClicked(req, res) {
   let user = await User.findById(req.params.id);
-  console.log("chumbawumba");
   user.infoStage++;
   user.save();
   return res.status(200).json({ infoStage: user.infoStage });
