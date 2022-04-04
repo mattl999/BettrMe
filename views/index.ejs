@@ -194,85 +194,84 @@
             <div class="<%= parseInt(user.infoStage) < 5 ? 'info-pulse' : 'info'%>">
             <% if(!user.infoStage){ %>
               You can create new goals by clicking the <span class="green"> big green button </span>(or whatever color kioko chooses) in the bottom left corner of the screen. Let's create our first daily goal!
-              <% } else if(user.infoStage === 1){ %>
-                Congrats on creating your first goal! To <span class="green"> modify </span> or <span class="red"> delete </span> a goal, click the edit button beside the goal you want to change.
-              <% } else if(user.infoStage === 2){ %>
-                You're getting the hang of it! Once you complete a daily goal, you can click the <span class="grey"> grey box </span> beside that goal to mark it as complete. Give it a try, just for fun :) 
-              <% } else if(user.infoStage === 3){ %>
-                If you complete all of your daily goals, your streak will be increased by 1 when you come back tomorrow! Click <button class="edit-btn smol" onclick="streakDemo(event)" queryUser="<%= user.id %>">here</button> to see what it looks like when you build a big streak!
-              <% } else if(user.infoStage === 4){ %>
-                Now that you know the ropes, your journey of self-improvement can begin! Click <button class="edit-btn smol" onclick="resetStreak(event)" queryUser="<%= user.id %>">here</button> to set your streak back to normal. From now on this box will provide interesting facts and information.
-              <% } else if(user.infoStage > 4){ %>
-                <%- info.info %>
-                <% if(info.source){ %>
-                </br>
+            <% } else if(user.infoStage === 1){ %>
+              Congrats on creating your first goal! To <span class="green"> modify </span> or <span class="red"> delete </span> a goal, click the edit button beside the goal you want to change.
+            <% } else if(user.infoStage === 2){ %>
+              You're getting the hang of it! Once you complete a daily goal, you can click the <span class="grey"> grey box </span> beside that goal to mark it as complete. Give it a try, just for fun :) 
+            <% } else if(user.infoStage === 3){ %>
+              If you complete all of your daily goals, your streak will be increased by 1 when you come back tomorrow! Click <button class="edit-btn smol" onclick="streakDemo(event)" queryUser="<%= user.id %>">here</button> to see what it looks like when you build a big streak!
+            <% } else if(user.infoStage === 4){ %>
+              Now that you know the ropes, your journey of self-improvement can begin! Click <button class="edit-btn smol" onclick="resetStreak(event)" queryUser="<%= user.id %>">here</button> to set your streak back to normal. From now on this box will provide interesting facts and information.
+            <% } else if(user.infoStage > 4){ %>
+              <%- info.info %>
+              <% if(info.source){ %>
+              </br>
               </br>
         
-                 <a href= "<%= info.source %>" target="_blank" class="source" > Source </a>
-                <% } %>
-              <% } %>
-                </div>
+              <a href= "<%= info.source %>" target="_blank" class="source" > Source </a>
+            <% } %>
+            <% } %>
+            </div>
           </div>
          </div>
        </div>
-    <div class="quote-container">
-      <div class="quote-box">
-        <div class="box-header">
-            Daily Quote
-          </div>
-     <div class="quote">
-      <p class="quote-text"> 
-        <%= quotes[user.totalDaysElapsed % 30].quote %>  
-      </p> 
-      <p class="author"><%= quotes[user.totalDaysElapsed % 30].author %> </p>
-     </div>
-    </div>
+      <div class="quote-container">
+        <div class="quote-box">
+          <div class="box-header">
+              Daily Quote
+            </div>
+      <div class="quote">
+        <p class="quote-text"> 
+          <%= quotes[user.totalDaysElapsed % 30].quote %>  
+        </p> 
+        <p class="author"><%= quotes[user.totalDaysElapsed % 30].author %> </p>
+      </div>
+      </div>
     </div>
    </div>
   </div>
 
-   <!-- create modal -->
-    <div class="modal-bg ">
-      <div class="modal">         
-        <div class="modal-title">
-          <span class="card-title">Enter your new Goal  :</span>
-        </div>
-        <div class="input-container">
-          <form action="/" method="post">
-            <input autocomplete="off" id="modal-input" type="text" name="activity" >
-            
-            <!-- create-modal-button  -->
-            <div class="btn-container">
-            <button class="submit" type="submit">Submit</button>
-            </div>
-            <div class="modal-close">
-              <span >x</span>
-            </div>
-          </form>
-        </div>
+  <!-- create modal -->
+  <div class="modal-bg ">
+    <div class="modal">         
+      <div class="modal-title">
+        <span class="card-title">Enter your new Goal  :</span>
       </div>
-    </div>
-       
-      <!-- edit modal -->
-    <div class="edit-modal-bg bg-active">
-      <div class="modal">        
-        <div class="modal-title">
-          <span class="card-title">Edit Goal  :</span>
-        </div>
-        <div class="input-container">
-          <input autocomplete="off" id="edit-modal-input" type="text" name="activity">
-          <div class="edit-modal-close">
+      <div class="input-container">
+        <form action="/" method="post">
+          <input autocomplete="off" id="modal-input" type="text" name="activity" >            
+          <!-- create-modal-button  -->
+          <div class="btn-container">
+          <button class="submit" type="submit">Submit</button>
+          </div>
+          <div class="modal-close">
             <span >x</span>
           </div>
-        </div>
-        
-          <!-- edit-modal-buttons -->
-        <div class="btn-container">
-          <button onclick ="deleteObject(event)" queryUser= "<%= user.id %>"  class="delete submit">Delete</button>
-          <button onclick ="confirmEdit(event)" queryUser= "<%= user.id %>"  class="submit">Edit</button>
-        </div>
+        </form>
       </div>
     </div>
+  </div>
+       
+    <!-- edit modal -->
+  <div class="edit-modal-bg bg-active">
+    <div class="modal">        
+      <div class="modal-title">
+        <span class="card-title">Edit Goal  :</span>
+      </div>
+      <div class="input-container">
+        <input autocomplete="off" id="edit-modal-input" type="text" name="activity">
+        <div class="edit-modal-close">
+          <span >x</span>
+        </div>
+      </div>
+      
+        <!-- edit-modal-buttons -->
+      <div class="btn-container">
+        <button onclick ="deleteObject(event)" queryUser= "<%= user.id %>"  class="delete submit">Delete</button>
+        <button onclick ="confirmEdit(event)" queryUser= "<%= user.id %>"  class="submit">Edit</button>
+      </div>
+    </div>
+  </div>
               
               <!-- intro modal -->
     <%if(!user.wakeUp) { %>

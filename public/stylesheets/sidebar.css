@@ -1,3 +1,5 @@
+
+
 .sidebar {
   background-color: rgb(123, 135, 138);
   
@@ -5,11 +7,6 @@
   display: grid;
   grid-template-rows: 85% 15%;
 }
-
-
-
-
-
 
 #side-btn-div {
   grid-row-start: 2;

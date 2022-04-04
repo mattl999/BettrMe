@@ -1,5 +1,6 @@
 :root {
   --secondary-color: rgb(123, 172, 172);
+  --main-font: "Outfit", sans-serif;
 }
 
 body > nav {
@@ -16,14 +17,13 @@ body > nav {
   display: flex;
   justify-content: space-between;
   padding-right: 3vw;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--main-font)
 }
 .login {
   text-decoration: none;
   color: white;
   font-size: 2vh;
 }
-
 .login:hover {
   color: rgb(153, 201, 193);
 }
@@ -54,7 +54,7 @@ body > nav {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   background-color: var(--secondary-color);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--main-font)
 }
 .time {
   display: flex;
@@ -74,6 +74,8 @@ body > nav {
   margin: 1vh;
   overflow: hidden;
 }
+
+/* progress bar and percent stuff */
 .progress-meter {
   width: 16vw;
   height: 41%;
@@ -83,7 +85,6 @@ body > nav {
 }
 .progress-fill {
   background-color: #4b93d1;
-
   height: 100%;
   border-radius: 14vw;
   overflow: hidden;
@@ -106,16 +107,18 @@ body > nav {
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--main-font);
   overflow: hidden;
   margin-right: 1vw;
 }
+
+/* top message stuff */
 .top-message {
   font-size: 2.5vh;
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--main-font);
   overflow: hidden;
   display: flex;
   justify-content: center;
