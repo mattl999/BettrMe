@@ -1,5 +1,5 @@
 var script = document.createElement("script");
-script.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+// script.src = "https://code.jquery.com/jquery-3.6.0.min.js";
 script.type = "text/javascript";
 document.getElementsByTagName("head")[0].appendChild(script);
 
@@ -37,7 +37,6 @@ const DateTime = luxon.DateTime;
 let dt = DateTime.now();
 
 function initTutorial() {
-  console.log("hey there dood");
   document.querySelector("body").style.pointerEvents = "none";
   leftArrow.style.pointerEvents = "none";
   rightArrow.style.pointerEvents = "none";
@@ -67,23 +66,23 @@ function renderFunc(percent, displayVal, totalDaysElapsed) {
   if (percentVal === 100) {
     progMsg.innerHTML = `&nbsp Congrats! &#127881 You completed all your goals! `;
   }
-  console.log("tot", totalDaysElapsed);
+
   daysElapsed = totalDaysElapsed;
 }
-async function timeWords (){
-  let timeWordage = ""
+async function timeWords() {
+  let timeWordage = "";
   let t = new Date();
   let h = parseInt(t.getHours());
   if (h >= 4 && h < 12) {
-    timeWordage= " Morning";
+    timeWordage = " Morning";
   } else if (h >= 12 && h < 18) {
-    timeWordage= " Afternoon";
+    timeWordage = " Afternoon";
   } else {
-    timeWordage= " Evening";
+    timeWordage = " Evening";
   }
-  timeWord.innerText = timeWordage
+  timeWord.innerText = timeWordage;
 }
-timeWords ();
+timeWords();
 async function nextDay(event) {
   let viewing = "";
   let u = event.target.getAttribute("queryUser");
@@ -109,7 +108,7 @@ async function nextDay(event) {
   window.location.replace("/");
 }
 
-async function prevDay(event, val) {
+async function prevDay(event) {
   let viewing = "";
   let u = event.target.getAttribute("queryUser");
   let res = await fetch("/getDisplayVal/" + u, {
@@ -173,7 +172,6 @@ let u = "";
 async function showEditModal(event) {
   u = event.target.getAttribute("queryUser");
   editModalBg.classList.add("bg-active");
-  console.log("asdfasdfas", typeof event.target.getAttribute("infoStage"));
   if (parseInt(event.target.getAttribute("infoStage")) === 1) {
     editButton.setAttribute("class", "edit-btn");
     try {
@@ -183,9 +181,9 @@ async function showEditModal(event) {
     } catch (err) {
       console.log(err);
     }
+    infoContainer.innerText =
+      "You're getting the hang of it! Once you complete a daily goal, you can click the grey box beside that goal to mark it as complete. Give it a try, just for fun :)  ";
   }
-  infoContainer.innerText =
-    "You're getting the hang of it! Once you complete a daily goal, you can click the <span class='grey'> grey box </span> beside that goal to mark it as complete. Give it a try, just for fun :)  ";
   g = event.target.getAttribute("data-id");
   activity = event.target.getAttribute("data-activity-id");
   editModalInput.value = activity;
@@ -264,7 +262,6 @@ async function toggler(event) {
   let r = 0;
 
   if (parseInt(event.target.getAttribute("infoStage")) === 2) {
-    console.log(event.target.getAttribute("infoStage"));
     try {
       res = await fetch("/togglerClicked/" + u, {
         method: "PUT",

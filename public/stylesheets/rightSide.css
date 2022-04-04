@@ -7,18 +7,16 @@
   display: grid;
   grid-template-rows: 12% 30% 25% 30%;
 }
-.green {
-  color: rgb(7, 130, 7);
-  font-weight: bold;
+.box-header {
+  background-color: var(--side-border);
+  border-radius: 10px 10px 0 0;
+  color: rgb(228, 227, 255);
+  font-family: "Outfit", sans-serif;
+  padding-left: 1vw;
+  font-size: 1.7vh;
 }
-.red {
-  color: rgb(163, 37, 37);
-  font-weight: bold;
-}
-.grey {
-  color: rgb(96, 96, 96);
-  font-weight: bold;
-}
+
+/* top box (streak box) */
 .streak-val-container {
   align-items: center;
 }
@@ -30,57 +28,47 @@
   text-align: center;
   font-family: "Outfit", sans-serif;
   background-color: var(--box-bg);
-  /* background-color: rgba(51, 107, 228,.7);
-    background: radial-gradient(circle at center, #1e88a5 0 , #1e8ca5 70% , #1e76a5 100%); */
-  font-size: 23px;
+  font-size: 3vh;
   border: 1px solid var(--side-border);
   border-radius: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.fire {
-  height: 30px;
-  margin-left: 1vh;
+.streak-val-box span {
+  margin-left: 1vw;
+}
+
+/* 30-day challenge box */
+.streak-visual-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.streak-visual-box {
+  display: grid;
+  grid-template-rows: 2.4vh 1fr;
+  width: 85%;
+  height: 85%;
+  background-color: var(--box-bg);
+  border: 1px solid var(--side-border);
+  border-radius: 14px;
 }
 .streak-visual-container {
   display: flex;
   justify-content: left;
   align-items: center;
 }
-.box-header {
-  background-color: var(--side-border);
-  border-radius: 10px 10px 0 0;
-
-  color: rgb(228, 227, 255);
-  font-family: "Outfit", sans-serif;
-  padding-left: 1vw;
-  font-size: 1.7vh;
-}
-.streak-visual-box {
-  width: 85%;
-  height: 85%;
-  background-color: var(--box-bg);
-  border: 1px solid var(--side-border);
-  border-radius: 14px;
-  display: grid;
-  grid-template-rows: 2.4vh 1fr;
-}
-.streak-visual-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .streak-visual {
   width: 97%;
   height: 85%;
-  /* background-color: blue; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
+/* grid-making classes */
 .streak-visual-day {
   width: 14%;
   height: 19.2%;
@@ -110,6 +98,8 @@
   padding-bottom: 30%;
   background-color: rgb(153, 47, 47);
 }
+
+/* info-box */
 .info-div-container {
   display: flex;
   justify-content: left;
@@ -123,36 +113,8 @@
   padding-left: 1vw;
   font-size: 1.7vh;
 }
-.info-red {
-    background-color: var(--red-pulse);
-}
-@keyframes redPulse {
-  50% {
-    
-  }
-}
-.border-red {
-    border: 1px solid var(--red-pulse) !important;
-}
 
 
-@keyframes redBorder {
-  50% {
-    border-color: var(--red-pulse);
-  }
-}
-.info-pulse {
-  animation: pulseText;
-  animation-duration: 1.9s;
-  animation-iteration-count: infinite;
-}
-@keyframes pulseText {
-  50% {
-    -webkit-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-    transform: scale(1.02);
-  }
-}
 .info-div-box {
   width: 85%;
   height: 95%;
@@ -184,6 +146,8 @@
   background-color: rgba(105, 105, 105, 0.5); /* color of the scroll thumb */
   border-radius: 20px; /* roundness of the scroll thumb */
 }
+
+/* quote box (bottom-box) */
 .quote-container {
   display: flex;
   justify-content: left;
@@ -240,6 +204,49 @@
   margin-top: 1vh;
   text-align: right;
 }
-.streak-val-box span {
-  margin-left: 1vw;
+.source {
+  color: rgb(86, 86, 252);
+}
+.source:hover {
+  color: rgb(73, 73, 255);
+
+}
+
+
+/* tutorial animations */
+@keyframes redBorder {
+  50% {
+    border-color: var(--red-pulse);
+  }
+}
+.info-pulse {
+  animation: pulseText;
+  animation-duration: 1.9s;
+  animation-iteration-count: infinite;
+}
+@keyframes pulseText {
+  50% {
+    -webkit-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
+  }
+}
+.green {
+  color: rgb(7, 130, 7);
+  font-weight: bold;
+}
+.red {
+  color: rgb(163, 37, 37);
+  font-weight: bold;
+}
+.grey {
+  color: rgb(96, 96, 96);
+  font-weight: bold;
+}
+.info-red {
+  background-color: var(--red-pulse);
+}
+
+.border-red {
+  border: 1px solid var(--red-pulse) !important;
 }

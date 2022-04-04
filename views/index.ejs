@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-    </style>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-    </style>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-    </style>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@200&display=swap');
-    </style>
-    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');    
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');    
+      @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');    
       @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     </style>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-    </style>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-    </style>
+
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="/stylesheets/calendar.css" />
     <link rel="stylesheet" href="/stylesheets/modal.css">
@@ -30,16 +17,12 @@
     <link rel="stylesheet" href="/stylesheets/sidebar.css">
     <link rel="stylesheet" href="/stylesheets/introModal.css">
     <link rel="stylesheet" href="/stylesheets/rightSide.css">
+    <link rel="stylesheet" href="/stylesheets/navBar.css">
     
-   
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer src="https://unpkg.com/ejs@3.1.6/ejs.min.js"></script>
     <script defer src="/javascripts/frontEnd.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.1/build/global/luxon.min.js"></script>
     
-
   </head>
   <body onload="renderFunc('<%= user.percent %>', '<%= user.displayVal %>', '<%= user.totalDaysElapsed %>')" >
 
@@ -154,8 +137,7 @@
      <!-- right-side -->
      <div class="right-side-container">
        <div class="streak-val-container">
-        <div class="streak-val-box">
-        
+        <div class="streak-val-box">        
         <p>Streak : <%=user.streak %></p>
         <% if(user.streak){ %>
         <!-- <img src="images/fire.png" class='fire' alt=""> -->
@@ -213,7 +195,7 @@
             <% if(!user.infoStage){ %>
               You can create new goals by clicking the <span class="green"> big green button </span>(or whatever color kioko chooses) in the bottom left corner of the screen. Let's create our first daily goal!
               <% } else if(user.infoStage === 1){ %>
-                Congrats on creating your first goal! To <span class="green"> modify </span> or <span class="red"> delete </span> a goal, click the edit button matching the goal you want to change.
+                Congrats on creating your first goal! To <span class="green"> modify </span> or <span class="red"> delete </span> a goal, click the edit button beside the goal you want to change.
               <% } else if(user.infoStage === 2){ %>
                 You're getting the hang of it! Once you complete a daily goal, you can click the <span class="grey"> grey box </span> beside that goal to mark it as complete. Give it a try, just for fun :) 
               <% } else if(user.infoStage === 3){ %>
@@ -221,7 +203,13 @@
               <% } else if(user.infoStage === 4){ %>
                 Now that you know the ropes, your journey of self-improvement can begin! Click <button class="edit-btn smol" onclick="resetStreak(event)" queryUser="<%= user.id %>">here</button> to set your streak back to normal. From now on this box will provide interesting facts and information.
               <% } else if(user.infoStage > 4){ %>
-                Helloooooooo
+                <%- info.info %>
+                <% if(info.source){ %>
+                </br>
+              </br>
+        
+                 <a href= "<%= info.source %>" target="_blank" class="source" > Source </a>
+                <% } %>
               <% } %>
                 </div>
           </div>
@@ -244,13 +232,7 @@
   </div>
    <!-- create modal -->
     <div class="modal-bg ">
-      <div class="edit-modal"> 
-        <div class="l-margin margin">  
-          <div class="hole first-hole"></div>
-          <div class="hole second-hole"></div>
-          <div class="hole third-hole"></div>
-        </div>
-        <div class="r-margin margin"></div>
+      <div class="edit-modal">         
         <div class="modal-title">
           <span class="card-title">Enter your new Goal  :</span>
         </div>
@@ -270,13 +252,7 @@
        
       <!-- edit modal -->
     <div class="edit-modal-bg ">
-      <div class="edit-modal">
-        <div class="l-margin margin">
-          <div class="hole first-hole"></div>
-          <div class="hole second-hole"></div>
-          <div class="hole third-hole"></div>
-        </div>
-        <div class="r-margin margin"></div>
+      <div class="edit-modal">        
         <div class="modal-title">
           <span class="card-title">Edit Goal  :</span>
         </div>
@@ -308,32 +284,30 @@
           </div>
           <form class="intro-form" action="/intro/<%= user.id %>?_method=PUT" method="POST">
             
-            <div class="prompt">
-              What should we call you?
-            </div>
-            <input autocomplete="off" class="intro-modal-input" type="text" name="name" >
-            <div class="prompt ">
-              What time do you typically start your day?
-            </div>
-              <div class="time-input-container">
-              <input class="intro-modal-input wake-up"  type="time" name="wakeUp" >
-              <label for="meridian"></label>            
-              <select name="meridian" id="meridian">
-                <option value="am">AM</option>
-                <option value="pm">PM</option>
-              </select>
+              <div class="prompt">
+                What should we call you?
               </div>
-            <div class="intro-btn-container">
-              <button type="submit" queryUser= "<%= user.id %>"  class="intro-submit">Begin</button>
-            </div>    
-        </form>
+              <input autocomplete="off" class="intro-modal-input" type="text" name="name" >
+              <div class="prompt ">
+                What time do you typically start your day?
+              </div>
+              <div class="time-input-container">
+                <input class="intro-modal-input wake-up"  type="time" name="wakeUp" >
+                <label for="meridian"></label>            
+                <select name="meridian" id="meridian">
+                  <option value="am">AM</option>
+                  <option value="pm">PM</option>
+                </select>
+              </div>
+              <div class="intro-btn-container">
+                <button type="submit" queryUser= "<%= user.id %>"  class="intro-submit">Begin</button>
+              </div>    
+            </form>
+          </div>
+        </div>
+      <% } %>
       </div>
     </div>
-  <% } %>
-  </div>
-  </div>
- 
-  </body>
-  
-  </html>
+  </body>  
+</html>
  

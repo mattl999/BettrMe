@@ -16,27 +16,25 @@
     }
   }
   .calendar-top{
-    background-color: bg(209, 4, 4);
+    
     display:flex;
     align-items: center;
     justify-content: center;
     padding:4%;
     border-radius: 1vh 1vh 0 0;
-    border: 3px solid #111;
+    background-color: rgb(153, 47, 47);   
+    border: 3px solid var(--calendar-borders);
     color:white;
     font-size: 5vh;
     font-family: 'Anton', sans-serif;
     -webkit-text-stroke: 1px black;
-    letter-spacing: 2px;
-  
+    letter-spacing: 1px;
   }
   .calendar-body{
     display:grid;
     grid-template-columns: 10% 80% 10%;
     grid-template-rows: 1fr;
-    
-    border: 1px solid #111;
-    border-radius: 0;
+    border: 1px solid var(--calendar-borders);
     border-bottom-left-radius: 3vh;
     border-bottom-right-radius: 3vh;
     overflow-y: auto;
@@ -54,6 +52,34 @@
     border-radius: 20px; /* roundness of the scroll thumb */
   }
   
+  .goal-list {
+    grid-column-start: 2;
+    grid-row-start: 1;
+  }
+
+  .arrow {
+    height: 3vw;
+    width: 3vw;
+    color: #777;
+  }  
+  #calendar-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #arrow-left {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+  #calendar-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #arrow-right {
+    grid-column-start: 3;
+    grid-row-start: 1;
+  }
     
   .calendar-side{
     
