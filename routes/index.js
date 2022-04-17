@@ -19,7 +19,7 @@ router.put('/togglerClicked/:id',isLoggedIn,goalCtrl.togglerClicked)
 router.put('/streakDemo/:id',isLoggedIn,goalCtrl.streakDemo)
 router.put('/resetStreak/:id',isLoggedIn,goalCtrl.resetStreak)
 
-// router.get('/goals/view/:id', goalCtrl.view)
+
 
 //Oauth Routes
 router.get(
@@ -44,6 +44,6 @@ router.get('/logout', function(req, res){
 
   function isLoggedIn(req, res, next) {
     if ( req.isAuthenticated() ) return next();
-    res.render('../views/login');;
+    res.render('../views/login');
   }
 module.exports = router;
