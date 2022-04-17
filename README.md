@@ -49,12 +49,11 @@ Edit your Goals
 - If you want to delete or edit a goal, use the edit link beside your goal in the left sidebar!
 - Finished your goal? Click on the box beside your goal to add a checkmark and mark it as complete!
 
-### Future Additions
+### Features
 ---
-- Manage goal completion and tracking over time.
-- Add dynamic changes for the goal list when viewing today or tomorrow.
-- Display "goal streak" to show the user how many days in a row they have completed all goals.
-- Make progress bar and percentage dynamically change.
-- Have quotes change daily.
+- User can view today or tomorrow's goals.
+- "Goal streak" shows the user how many days in a row they have completed all goals.
+- Progress bar and percentage dynamically change.
+- New quote for each day.
 - Have display change without reloading the page
 
