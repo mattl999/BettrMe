@@ -193,7 +193,7 @@
           <div class="info-container">
             <div class="<%= parseInt(user.infoStage) < 5 ? 'info-pulse' : 'info'%>">
             <% if(!user.infoStage){ %>
-              You can create new goals by clicking the <span class="green"> big green button </span>(or whatever color kioko chooses) in the bottom left corner of the screen. Let's create our first daily goal!
+              You can create new goals by clicking the <span class="green"> big green button </span> in the bottom left corner of the screen. Let's create our first daily goal!
             <% } else if(user.infoStage === 1){ %>
               Congrats on creating your first goal! To <span class="green"> modify </span> or <span class="red"> delete </span> a goal, click the edit button beside the goal you want to change.
             <% } else if(user.infoStage === 2){ %>
@@ -309,6 +309,15 @@
           </div>
         </div>
       <% } %>
+      <% if(user.infoStage < 5 ) { %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right tutorial-arrow top-arrow" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right tutorial-arrow bottom-arrow" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+      </svg>
+      <% } %>
+
       </div>
     </div>
   </body>  

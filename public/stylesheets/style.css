@@ -1,10 +1,10 @@
-:root{
+:root {
   --bg: #888;
   --calendar-borders: black;
 }
 body {
-  font-family: 'Roboto', sans-serif;
-  
+  font-family: "Roboto", sans-serif;
+
   margin: 0;
   background-color: rgb(167, 167, 167);
   height: 100vh;
@@ -29,10 +29,60 @@ h1 {
   background-size: cover;
   display: grid;
   grid-template-columns: 18% 60% 22%;
- 
+}
+
+.tutorial-arrow {
+  position: absolute;
+  height: 100px;
+  width: 80px;
+  right: 23%;
+  color: rgb(121, 0, 0);
+  stroke: rgba(149, 0, 0, 0.305);
+  stroke-width: 1.5px;
+}
+.top-arrow {
+  top: 50%;
+  transform: rotate(15deg);
+  animation: topArr;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.bottom-arrow {
+  top: 62%;
+  transform: rotate(-15deg);
+  animation: botArr;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes topArr {
+  0% {
+    top: 47%;
+    right: 24%;
+  }
+  50% {
+    top: 48%;
+    right: 23%;
+  }
+  100% {
+    top: 47%;
+    right: 24%;
+  }
+}
+@keyframes botArr {
+  0% {
+    top: 64%;
+    right: 24%;
+  }
+  50% {
+    top: 63%;
+    right: 23%;
+  }
+  100% {
+    top: 64%;
+    right: 24%;
+  }
 }
 
 /* main sections */
-
-
-
