@@ -14,15 +14,17 @@ The application is in an early stage of development, and there are many features
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Main%20Page.png?raw=true)
 Main-view of app
 ---
+![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Intro%20Modal.png)
+App introduction
+---
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Create%20Modal.png?raw=true)
 Add a new goal
 ---
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Edit%20Modal.png?raw=true)
 Edit your Goals
 ---
-![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Tomorrow.png?raw=true)
-View Tomorrow or Yesterday
----
+
+
 ## :computer: Technologies Used 
 
 - Javascript
