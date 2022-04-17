@@ -164,6 +164,8 @@ function hideModal(evt) {
 }
 function hideEditModal(evt) {
   editModalBg.classList.remove("bg-active");
+  window.location.replace('/');
+
 }
 let g = "";
 let activity = "";
