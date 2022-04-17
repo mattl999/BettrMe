@@ -165,17 +165,15 @@
                 <% } else if(i === 5 || i === 11 || i === 17 || i === 23){ %>
                   <div class="streak-visual-day no-right">
                 <% } else if(i > 24 && i < 29){ %>
-
                   <div class="streak-visual-day no-bottom">
                 <% } else if(i === 24){ %>
-
                   <div class="streak-visual-day no-bottom no-left"> 
                 <% } else if(i === 29){ %>
-
                   <div class="streak-visual-day no-bottom no-right">   
                 <%} else{ %>
                 <div class="streak-visual-day">
                 <% } %>
+                
                 <% if(i < user.streak){ %>
                   <div class="red-circle"></div>
                   <% } %>
@@ -188,7 +186,7 @@
        <div class="info-div-container">
          <div class="<%= parseInt(user.infoStage) < 5 ? 'info-div-box border-red' : 'info-div-box'%>">
           <div class="<%= parseInt(user.infoStage) < 5 ? 'info-box-header info-red' : 'info-box-header'%>" >
-            info
+            Info
           </div>
           <div class="info-container">
             <div class="<%= parseInt(user.infoStage) < 5 ? 'info-pulse' : 'info'%>">
@@ -295,7 +293,7 @@
                 What time do you typically start your day?
               </div>
               <div class="time-input-container">
-                <input class="intro-modal-input wake-up"  type="time" name="wakeUp" >
+                <input class="intro-modal-input wake-up"  type="time" name="wakeUp" max="12" >
                 <label for="meridian"></label>            
                 <select name="meridian" id="meridian">
                   <option value="am">AM</option>
@@ -309,7 +307,9 @@
           </div>
         </div>
       <% } %>
-      <% if(user.infoStage < 5 ) { %>
+
+      <!-- tutorial arrows -->
+      <% if(user.infoStage < 5 && user.infoStage >= 0) { %>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right tutorial-arrow top-arrow" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
       </svg>

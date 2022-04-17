@@ -4,23 +4,24 @@ const { DateTime } = require("luxon");
 var Time = DateTime;
 const quotes = [
   {
+    quote: "Either you run the day or the day runs you.",
+    author: "- Jim Rohn",
+  },
+  {
     quote:
       "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
     author: "- Aristotle",
   },
   {
     quote: "He who conquers himself is the mightiest warrior",
-    author: "- confucius",
+    author: "- Confucius",
   },
   {
     quote:
       "Life is like riding a bicycle. To keep your balance you must keep moving.",
     author: "- Albert Einstein",
   },
-  {
-    quote: "Either you run the day or the day runs you.",
-    author: "- Jim Rohn",
-  },
+  
   {
     quote: "Goal setting is the secret to a compelling future.",
     author: "- Tony Robbins",
@@ -143,13 +144,13 @@ const quotes = [
 ];
 const infos = [
   {
+    info: "Habits provide mental freedom and flexibility by enabling activities to be on autopilot while the brain focuses on more urgent matters.",
+    source: "",
+  },
+  {
     info: "Over 40% of what you do is habitual. The average person spends nearly half of their waking hours performing habitual actions.",
     source:
       "https://dornsife.usc.edu/assets/sites/208/docs/Neal.Wood.Quinn.2006.pdf",
-  },
-  {
-    info: "Habits provide mental freedom and flexibility by enabling activities to be on autopilot while the brain focuses on more urgent matters.",
-    source: "",
   },
   {
     info: '"Habits, for better or worse, basically define who we are"',

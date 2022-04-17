@@ -39,6 +39,7 @@ h1 {
   color: rgb(121, 0, 0);
   stroke: rgba(149, 0, 0, 0.305);
   stroke-width: 1.5px;
+  z-index: 1;
 }
 .top-arrow {
   top: 50%;
