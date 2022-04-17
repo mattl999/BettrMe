@@ -14,15 +14,17 @@ The application is in an early stage of development, and there are many features
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Main%20Page.png?raw=true)
 Main-view of app
 ---
+![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Intro%20Modal.png)
+App introduction
+---
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Create%20Modal.png?raw=true)
 Add a new goal
 ---
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Edit%20Modal.png?raw=true)
 Edit your Goals
 ---
-![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Tomorrow.png?raw=true)
-View Tomorrow or Yesterday
----
+
+
 ## :computer: Technologies Used 
 
 - Javascript
@@ -47,12 +49,11 @@ View Tomorrow or Yesterday
 - If you want to delete or edit a goal, use the edit link beside your goal in the left sidebar!
 - Finished your goal? Click on the box beside your goal to add a checkmark and mark it as complete!
 
-### Future Additions
+### Features
 ---
-- Manage goal completion and tracking over time.
-- Add dynamic changes for the goal list when viewing today or tomorrow.
-- Display "goal streak" to show the user how many days in a row they have completed all goals.
-- Make progress bar and percentage dynamically change.
-- Have quotes change daily.
+- User can view today or tomorrow's goals.
+- "Goal streak" shows the user how many days in a row they have completed all goals.
+- Progress bar and percentage dynamically change.
+- New quote for each day.
 - Have display change without reloading the page
 
