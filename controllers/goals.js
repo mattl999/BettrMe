@@ -144,6 +144,15 @@ const quotes = [
 ];
 const infos = [
   {
+    info: '"Habits, for better or worse, basically define who we are"',
+    source: "https://www.sciencedaily.com/releases/2011/12/111221140448.htm#:~:text=%22Habits%2C%20for%20better%20or%20worse,more%20urgent%20matters%2C%20he%20said.",
+    sourceWord: "Dr. Joe Z. Tsien"
+  },
+  {
+    info: "This app focuses on forming and solidifying new healthy habits. If you'd like to learn more about breaking bad habits, this short article might help",
+    source: "https://medium.com/@susannekrausedx/how-to-break-a-habit-in-5-steps-fa09565392af#.ngm0gyesc",
+  },
+  {
     info: "Habits provide mental freedom and flexibility by enabling activities to be on autopilot while the brain focuses on more urgent matters.",
     source: "",
   },
@@ -151,10 +160,6 @@ const infos = [
     info: "Over 40% of what you do is habitual. The average person spends nearly half of their waking hours performing habitual actions.",
     source:
       "https://dornsife.usc.edu/assets/sites/208/docs/Neal.Wood.Quinn.2006.pdf",
-  },
-  {
-    info: '"Habits, for better or worse, basically define who we are"',
-    source: "Dr. Joe Z. Tsien, Georgia Health Sciences University",
   },
   {
     info: "It takes, on average, around 66 days to change a habit. The time it takes for each person can range from 18 to 250 days. We think that 30-days is a nice first target to aim for.",
@@ -166,10 +171,6 @@ const infos = [
   },
   {
     info: "Did you know that your brain makes up 2% of your total mass, but consumes 25% of all the oxygen you inhale? If your brain is zapped of energy, it can’t do its job as efficiently.  Increasing what you do habitually leaves more mental resources for the new challenges you encounter each day. President Obama, for example, only wears grey and blue suits, so he does not waste precious mental energy on his outfits.",
-    source: "",
-  },
-  {
-    info: "This app focuses on forming and solidifying new healthy habits. If you'd like to learn more about breaking bad habits, this short <a src = 'https://medium.com/@susannekrausedx/how-to-break-a-habit-in-5-steps-fa09565392af#.ngm0gyesc'> article </a>might help",
     source: "",
   },
   {

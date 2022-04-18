@@ -129,10 +129,13 @@
   text-align: center;
   color: rgb(230, 230, 230);
   font-size: 2vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   font-weight: 100;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; 
+  display: flex;
+  align-items: center;
+  line-height: 3vh;
 }
 
 .info-container::-webkit-scrollbar {
@@ -149,57 +152,45 @@
 }
 
 /* quote box (bottom-box) */
-.quote-container {
+.quote-div-container {
   display: flex;
   justify-content: left;
   align-items: center;
 }
-.quote-box {
+.quote-div-box {
   width: 85%;
   height: 85%;
-  background-color: var(--box-bg);
+  
   background-image:url("/images/bg1.jpg");
   background-size: cover;
-  
   border: 1px solid var(--side-border);
   border-radius: 14px;
   display: grid;
   grid-template-rows: 2.4vh 1fr;
 }
-
+.quote-container{
+  padding: 4% 8%;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  text-align: center; 
+}
 .quote {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: column; 
   align-items: center;
-  padding: 0 10%;
-  padding-top: 1vh;
   color: rgb(227, 227, 227);
   letter-spacing: 1px;
   text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.477), 1px -1px 0 rgb(40, 40, 40), -1px 1px 0 rgba(0, 0, 0, 0.693), 1px 1px 0 rgb(29, 29, 29);
   text-align: center;
-  overflow-y: scroll;
-  height: 100%;
-  box-sizing: border-box;
+ 
   display: flex;
+  
 }
 
-.quote::-webkit-scrollbar {
-  width: 8px;
-}
-.quote::-webkit-scrollbar-track {
-  background: rgba(234, 221, 251, 0);
-  border-radius: 20px;
-  /* color of the tracking area */
-}
-.quote::-webkit-scrollbar-thumb {
-  background-color: rgba(105, 105, 105, 0.5); /* color of the scroll thumb */
-  border-radius: 20px; /* roundness of the scroll thumb */
-  overflow: hidden;
-}
 .quote-text {
   font-family: "Bebas Neue", cursive;
-  font-size: 3.3vh;
+  font-size: 2.8vh;
   margin: 0;
   max-width: 25vw;
   text-align: inherit;
@@ -210,6 +201,19 @@
   font-size: 2.5vh;
   margin-top: 1vh;
   text-align: right;
+}
+.quote-container::-webkit-scrollbar {
+  width: 8px;
+}
+.quote-container::-webkit-scrollbar-track {
+  background: rgba(234, 221, 251, 0);
+  border-radius: 20px;
+  /* color of the tracking area */
+}
+.quote-container::-webkit-scrollbar-thumb {
+  background-color: rgba(105, 105, 105, 0.5); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  overflow: hidden;
 }
 .source {
   color: rgb(86, 86, 252);

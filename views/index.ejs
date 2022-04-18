@@ -185,7 +185,7 @@
        </div>
        <div class="info-div-container">
          <div class="<%= parseInt(user.infoStage) < 5 ? 'info-div-box border-red' : 'info-div-box'%>">
-          <div class="<%= parseInt(user.infoStage) < 5 ? 'info-box-header info-red' : 'info-box-header'%>" >
+          <div class="<%= parseInt(user.infoStage) < 5 ? 'box-header info-red' : 'box-header'%>" >
             Info
           </div>
           <div class="info-container">
@@ -199,34 +199,43 @@
             <% } else if(user.infoStage === 3){ %>
               If you complete all of your daily goals, your streak will be increased by 1 when you come back tomorrow! Click <button class="edit-btn smol" onclick="streakDemo(event)" queryUser="<%= user.id %>">here</button> to see what it looks like when you build a big streak!
             <% } else if(user.infoStage === 4){ %>
-              Now that you know the ropes, your journey of self-improvement can begin! Click <button class="edit-btn smol" onclick="resetStreak(event)" queryUser="<%= user.id %>">here</button> to set your streak back to normal. From now on this box will provide interesting facts and information.
+              Now that you know the ropes, your self-improvement journey can begin! Click <button class="edit-btn smol" onclick="resetStreak(event)" queryUser="<%= user.id %>">here</button> to set your streak back to normal. From now on this box will provide interesting facts and information.
             <% } else if(user.infoStage > 4){ %>
               <%- info.info %>
-              <% if(info.source){ %>
-              </br>
-              </br>
-        
-              <a href= "<%= info.source %>" target="_blank" class="source" > Source </a>
-            <% } %>
-            <% } %>
+              <% if(info.source){ %>              
+              </br>        
+            </br>        
+              <a href= "<%= info.source %>" target="_blank" class="source" >
+                <% if(info.sourceWord){ %>
+                  <%- info.sourceWord %>
+                    <% } else { %>
+                        Source
+                    <% } %>
+              </a>
+                   <% } %>
+                 <% } %>
             </div>
           </div>
          </div>
        </div>
-      <div class="quote-container">
-        <div class="quote-box">
+      <div class="quote-div-container">
+        <div class="quote-div-box">
           <div class="box-header">
-              Daily Quote
+            Daily Quote
+          </div>
+          <div class="quote-container">
+            <div class="quote">
+              <p class="quote-text"> 
+                <%= quotes[user.totalDaysElapsed % 30].quote %>  
+              </p> 
+              <p class="author">
+                <%= quotes[user.totalDaysElapsed % 30].author %> 
+              </p>
             </div>
-      <div class="quote">
-        <p class="quote-text"> 
-          <%= quotes[user.totalDaysElapsed % 30].quote %>  
-        </p> 
-        <p class="author"><%= quotes[user.totalDaysElapsed % 30].author %> </p>
-      </div>
+          </div>
+        </div>
       </div>
     </div>
-   </div>
   </div>
 
   <!-- create modal -->
