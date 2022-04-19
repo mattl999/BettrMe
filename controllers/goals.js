@@ -9,6 +9,11 @@ const quotes = [
   },
   {
     quote:
+      "Forget inspiration. Habit is more dependable. Habit will sustain you whether you're inspired or not.",
+    author: "- Octavia Butler",
+  },
+  {
+    quote:
       "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
     author: "- Aristotle",
   },
@@ -108,11 +113,7 @@ const quotes = [
     quote: "If there is no struggle, there is no progress.",
     author: "- Frederick Douglass",
   },
-  {
-    quote:
-      "First forget inspiration. Habit is more dependable. Habit will sustain you whether you're inspired or not. Habit will help you finish and polish your stories. Inspiration won't. Habit is persistence in practice.",
-    author: "- Octavia Butler",
-  },
+ 
   {
     quote:
       "If you don’t like the road you’re walking, start paving another one.",
@@ -144,13 +145,14 @@ const quotes = [
 ];
 const infos = [
   {
+    info: "This app focuses on forming and solidifying new healthy habits. If you'd like to learn more about breaking bad habits, this short article might help.",
+    source: "https://medium.com/@susannekrausedx/how-to-break-a-habit-in-5-steps-fa09565392af#.ngm0gyesc",
+    sourceWord: "Article"
+  },
+  {
     info: '"Habits, for better or worse, basically define who we are"',
     source: "https://www.sciencedaily.com/releases/2011/12/111221140448.htm#:~:text=%22Habits%2C%20for%20better%20or%20worse,more%20urgent%20matters%2C%20he%20said.",
     sourceWord: "Dr. Joe Z. Tsien"
-  },
-  {
-    info: "This app focuses on forming and solidifying new healthy habits. If you'd like to learn more about breaking bad habits, this short article might help",
-    source: "https://medium.com/@susannekrausedx/how-to-break-a-habit-in-5-steps-fa09565392af#.ngm0gyesc",
   },
   {
     info: "Habits provide mental freedom and flexibility by enabling activities to be on autopilot while the brain focuses on more urgent matters.",

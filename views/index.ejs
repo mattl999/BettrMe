@@ -46,7 +46,7 @@
       <div id="currentTime"><%= newTime %></div>
     </div>
     <div class='top-message'>Good <span class="time-word"> <%= timeWord %></span>
-      <%= user.name.split(" ")[0] %>. 
+      <%= user.name %>. 
       <div class="progress-message">
       <%- msg %>
       </div>
@@ -204,7 +204,7 @@
               <%- info.info %>
               <% if(info.source){ %>              
               </br>        
-            </br>        
+                 
               <a href= "<%= info.source %>" target="_blank" class="source" >
                 <% if(info.sourceWord){ %>
                   <%- info.sourceWord %>
@@ -224,14 +224,14 @@
             Daily Quote
           </div>
           <div class="quote-container">
-            <div class="quote">
-              <p class="quote-text"> 
+            
+              <div class="quote-text"> 
                 <%= quotes[user.totalDaysElapsed % 30].quote %>  
-              </p> 
-              <p class="author">
+              </div> 
+              <div class="author">
                 <%= quotes[user.totalDaysElapsed % 30].author %> 
-              </p>
-            </div>
+              </div>
+            
           </div>
         </div>
       </div>

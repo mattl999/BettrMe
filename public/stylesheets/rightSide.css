@@ -114,7 +114,6 @@
   font-size: 1.7vh;
 }
 
-
 .info-div-box {
   width: 85%;
   height: 95%;
@@ -132,9 +131,8 @@
   overflow-y: auto;
   font-weight: 100;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; 
-  display: flex;
-  align-items: center;
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: "Outfit", sans-serif; 
   line-height: 3vh;
 }
 
@@ -160,40 +158,38 @@
 .quote-div-box {
   width: 85%;
   height: 85%;
-  
-  background-image:url("/images/bg1.jpg");
+
+  background-image: url("/images/bg1.jpg");
   background-size: cover;
   border: 1px solid var(--side-border);
   border-radius: 14px;
   display: grid;
   grid-template-rows: 2.4vh 1fr;
 }
-.quote-container{
-  padding: 4% 8%;
+.quote-container {
+  padding: 6% 9%;
   overflow-y: scroll;
   display: flex;
-  align-items: center;
-  text-align: center; 
-}
-.quote {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
-  color: rgb(227, 227, 227);
-  letter-spacing: 1px;
-  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.477), 1px -1px 0 rgb(40, 40, 40), -1px 1px 0 rgba(0, 0, 0, 0.693), 1px 1px 0 rgb(29, 29, 29);
+  flex-direction: column;  
+  justify-content: start;
+  /* align-items: center; */
+  scroll-snap-align: center;
   text-align: center;
- 
-  display: flex;
+  max-height: 100%;
+  color: rgb(227, 227, 227);
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.477), 1px -1px 0 rgb(40, 40, 40),
+  -1px 1px 0 rgba(0, 0, 0, 0.693), 1px 1px 0 rgb(29, 29, 29);
+  letter-spacing: 1px;
+  max-height: 100%;
   
 }
 
 .quote-text {
   font-family: "Bebas Neue", cursive;
   font-size: 2.8vh;
-  margin: 0;
   max-width: 25vw;
-  text-align: inherit;
+
+  box-sizing: border-box;
 }
 .author {
   font-family: "Bebas Neue", cursive;
@@ -220,9 +216,7 @@
 }
 .source:hover {
   color: rgb(73, 73, 255);
-
 }
-
 
 /* tutorial animations */
 @keyframes redBorder {
