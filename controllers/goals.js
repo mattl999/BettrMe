@@ -345,7 +345,7 @@ async function deleteGoal(req, res) {
   let idx = user.today.findIndex(function (goal) {
     return goal.id === req.params.id;
   });
-  user.today.splice(idx, 1);
+  user.today.splice(idx, 1);``
   user.today.forEach(function (goal) {
     if (goal.completed) {
       done++;

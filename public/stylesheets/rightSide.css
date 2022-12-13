@@ -6,6 +6,7 @@
 .right-side-container {
   display: grid;
   grid-template-rows: 12% 30% 25% 30%;
+  max-height: 86vh;
 }
 .box-header {
   background-color: var(--side-border);

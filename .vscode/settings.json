@@ -1,4 +1,5 @@
 {
   "vscode-pets.petType": "dog",
-  "vscode-pets.petColor": "black"
+  "vscode-pets.petColor": "black",
+  "livePreview.defaultPreviewPath": "/views/index.ejs"
 }

@@ -2,10 +2,10 @@
 
 .sidebar {
   background-color: rgb(123, 135, 138);
-  
   border-right:1px solid rgb(95, 105, 107);
   display: grid;
   grid-template-rows: 85% 15%;
+  max-height:85.9vh ;
 }
 
 #side-btn-div {
@@ -28,6 +28,7 @@
   border-bottom: 1px solid rgb(107, 107, 107);
   padding-left: 0.5vw;
   color: rgb(31, 31, 31);
+  
 }
 .side-goal-activity {
   max-width: 70%;
@@ -70,8 +71,20 @@
   padding: 1.4vw;
   display: flex;
   flex-direction: column;
-
   font-size: 1.7vh;
+overflow-y: scroll;
+}
+
+#side-goal-list::-webkit-scrollbar {
+  width: 8px;
+}
+#side-goal-list::-webkit-scrollbar-track {
+  background: rgba(234, 221, 251, 0);
+  border-radius: 20px;
+}
+#side-goal-list::-webkit-scrollbar-thumb {
+  background-color: rgba(105, 105, 105, 0.5); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
 }
 @keyframes pulsate {
   0% {
@@ -79,21 +92,17 @@
     -ms-transform: scale(1);
     transform: scale(1);
   }
-  
- 
   50% {
     -webkit-transform: scale(1.2);
         -ms-transform: scale(1.2);
         transform: scale(1.2);
         background-color: rgb(158, 158, 158);
-  }
-  
+  }  
   100% {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
-  }
-  
+  }  
 }
 .modal-btn {
   width: 110%;

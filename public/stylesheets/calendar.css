@@ -1,218 +1,208 @@
-.calendar{
-    margin: 3% 5%;
-    width: 90%;
-    max-width: 900px;
-    height:94%;
-    background-color: #f5f5f5;
-    display: grid;
-    grid-template-rows: 15% 85%;
-    border-radius: 3vh;
-   max-height: 79vh;
-   position: relative;
+.calendar {
+  margin: 3% 5%;
+  width: 90%;
+  max-width: 900px;
+  height: 94%;
+  background-color: #f5f5f5;
+  display: grid;
+  grid-template-rows: 15% 85%;
+  border-radius: 3vh;
+  max-height: 79vh;
+  position: relative;
+}
+@media only screen and (min-width: 2000px) {
+  .calendar {
+    max-width: 1200px;
   }
-  @media only screen and (min-width: 2000px) {
-    .calendar {
-      max-width: 1200px;
-    }
-  }
-  .calendar-top{
-    
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    padding:4%;
-    border-radius: 1vh 1vh 0 0;
-    background-color: rgb(153, 47, 47);   
-    border: 3px solid var(--calendar-borders);
-    color:white;
-    font-size: 5vh;
-    font-family: 'Anton', sans-serif;
-    -webkit-text-stroke: 1px black;
-    letter-spacing: 1px;
-  }
-  .calendar-body{
-    display:grid;
-    grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 1fr;
-    border: 1px solid var(--calendar-borders);
-    border-bottom-left-radius: 3vh;
-    border-bottom-right-radius: 3vh;
-    overflow-y: auto;
-  }
-  .calendar-body::-webkit-scrollbar {
-    width: 8px;
-  }
-  .calendar-body::-webkit-scrollbar-track {
-    background: rgba(234, 221, 251, 0);
-    border-radius: 20px;
-    /* color of the tracking area */
-  }
-  .calendar-body::-webkit-scrollbar-thumb {
-    background-color: rgba(105, 105, 105, 0.5); /* color of the scroll thumb */
-    border-radius: 20px; /* roundness of the scroll thumb */
-  }
-  
-  .goal-list {
-    grid-column-start: 2;
-    grid-row-start: 1;
-  }
+}
+.calendar-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4%;
+  border-radius: 1vh 1vh 0 0;
+  background-color: rgb(153, 47, 47);
+  border: 3px solid var(--calendar-borders);
+  color: white;
+  font-size: 5vh;
+  font-family: "Anton", sans-serif;
+  -webkit-text-stroke: 1px black;
+  letter-spacing: 1px;
+}
+.calendar-body {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: 1fr;
+  border: 1px solid var(--calendar-borders);
+  border-bottom-left-radius: 3vh;
+  border-bottom-right-radius: 3vh;
+  overflow-y: auto;
+}
+.calendar-body::-webkit-scrollbar {
+  width: 8px;
+}
+.calendar-body::-webkit-scrollbar-track {
+  background: rgba(234, 221, 251, 0);
+  border-radius: 20px;
+  /* color of the tracking area */
+}
+.calendar-body::-webkit-scrollbar-thumb {
+  background-color: rgba(105, 105, 105, 0.5); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
 
-  .arrow {
-    height: 3vw;
-    width: 3vw;
-    color: #777;
-  }  
-  #calendar-left {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #arrow-left {
-    grid-column-start: 1;
-    grid-row-start: 1;
-  }
-  #calendar-right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #arrow-right {
-    grid-column-start: 3;
-    grid-row-start: 1;
-  }
-    
-  .calendar-side{
-    
-    background-color: rgba(221, 221, 221, 0);
-    transition-timing-function:linear;
-    transition: 0.2s;
-    height: 66.9vh;
-    }
-  .calendar-side:hover{
-    background-color: rgb(230, 230, 230);
-    cursor: pointer;  
-    }
-    .calendar-side:active{
-      background-color: rgb(184, 184, 184);
-      cursor: pointer;  
-      }
-  .arrow:hover{
+.goal-list {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+.arrow {
+  height: 3vw;
+  width: 3vw;
+  color: #777;
+}
+#calendar-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#arrow-left {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+#calendar-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#arrow-right {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.calendar-side {
+  background-color: rgba(221, 221, 221, 0);
+  transition-timing-function: linear;
+  transition: 0.2s;
+  height: 66.9vh;
+}
+.calendar-side:hover {
+  background-color: rgb(230, 230, 230);
+  cursor: pointer;
+}
+.calendar-side:active {
+  background-color: rgb(184, 184, 184);
+  cursor: pointer;
+}
+.arrow:hover {
   background-color: #ccc;
   cursor: pointer;
   border-radius: 50%;
-  }
-  .goal-list{
-    grid-column-start: 2;
-    grid-row-start: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding:1vh;
-    font-size: 3.4vh;
-    font-weight: 500;
-  } 
-  .goal-container p{
-    margin-left:2%;
-  }
-  .checkbox{
- 
-    height: 3vh;
-    width:3vh;
-    border: .5vh solid #777;
-    border-radius: 1px;
-    margin: 2.4vh 2vw 2.4vh 0vw ;
-   
-    display: flex;
-    justify-content: center;
-    margin-left:1.5vw;
-    align-items: center;
-    cursor:pointer;
-    z-index: 0;
-  }
-  .checkboxPulse{
-    animation: checkboxPulsate;
+}
+.goal-list {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1vh;
+  font-size: 3.4vh;
+  font-weight: 500;
+}
+.goal-container p {
+  margin-left: 2%;
+}
+.checkbox {
+  height: 3vh;
+  width: 3vh;
+  border: 0.5vh solid #777;
+  border-radius: 1px;
+  margin: 2.4vh 2vw 2.4vh 0vw;
+
+  display: flex;
+  justify-content: center;
+  margin-left: 1.5vw;
+  align-items: center;
+  cursor: pointer;
+  z-index: 0;
+}
+.checkboxPulse {
+  animation: checkboxPulsate;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
+}
+@keyframes checkboxPulsate {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
   }
-  @keyframes checkboxPulsate {
-    0% {
-      -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-      transform: scale(1);
-    }
-    50% {
-      -webkit-transform: scale(1.2);
-          -ms-transform: scale(1.2);
-          transform: scale(1.2);
-         
-    }
-    100% {
-      -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-      transform: scale(1);
-    }
+  50% {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
   }
-  .invisible{
-    visibility: hidden;
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
   }
-  .goal-divider{
-    color:grey;
-    
-    margin:.5vw;
-    margin-top:0;
-    margin-bottom:0;
-    
-  }
-  .checkmark{
-    height:4vh;
-    width:4vh;
-    z-index: 5;
-    margin-left: 1.2vw;
-    margin-bottom: 2vh;
-    pointer-events: none
-  
-  }
-  .checkbox-container{
-    width:3vh;
-    border-radius: 0;
-    height: 3vh;
-    margin:3vh;
-    
-  }
-  .goal-container{
-  
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    max-height: 350px;
-  }
- 
-  #calendar-left{
-    
-    display:flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #calendar-right{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .arrow{
-    height:3vw;
-    width:3vw;
-    color: #999;
-    opacity: .8;
-    pointer-events: none;
-  }
-  #arrow-left{
-    position:fixed;
-    grid-column-start: 1;
-    grid-row-start: 1;
-  }
-  #arrow-right{
-    position:fixed;
-    grid-column-start: 3;
-    grid-row-start: 1;
-  }
- 
+}
+.invisible {
+  visibility: hidden;
+}
+.goal-divider {
+  color: grey;
+
+  margin: 0.5vw;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.checkmark {
+  height: 4vh;
+  width: 4vh;
+  z-index: 5;
+  margin-left: 1.2vw;
+  margin-bottom: 2vh;
+  pointer-events: none;
+}
+.checkbox-container {
+  width: 3vh;
+  border-radius: 0;
+  height: 3vh;
+  margin: 3vh;
+}
+.goal-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  max-height: 350px;
+}
+
+#calendar-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#calendar-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arrow {
+  height: 3vw;
+  width: 3vw;
+  color: #999;
+  opacity: 0.8;
+  pointer-events: none;
+}
+#arrow-left {
+  position: fixed;
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+#arrow-right {
+  position: fixed;
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
