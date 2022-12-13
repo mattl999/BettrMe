@@ -11,19 +11,21 @@ The application is in an early stage of development, and there are many features
 
 ## :camera: Screenshots
 
+### Main-view of app
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Main%20Page.png?raw=true)
-Main-view of app
 ---
+### Progress-tracking
+![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BetttrMe%20With%20Progress.png)
+---
+### App introduction
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Intro%20Modal.png)
-App introduction
 ---
+### Add a new goal
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Create%20Modal.png?raw=true)
-Add a new goal
 ---
+### Edit or Delete your Goals
 ![Alt text](https://github.com/mattl999/BettrMe/blob/main/public/images/BettrMe%20Screenshots/BettrMe%20Edit%20Modal.png?raw=true)
-Edit your Goals
 ---
-
 
 ## :computer: Technologies Used 
 
@@ -44,15 +46,16 @@ Edit your Goals
 ### Using the App
 ---
 - The app is simple and straightforward to use!
-- Start by logging in using the link in the top right
-- You can now use the Green Button in the bottom left corner to set a new goal or task for yourself!
-- If you want to delete or edit a goal, use the edit link beside your goal in the left sidebar!
+- Start by logging in using the button in the top right corner
+- Follow the quick interactive tutorial to learn how the app works
+- You can use the Green Button in the bottom left corner to set a new goal or task for yourself!
+- If you want to delete or edit a goal, use the edit button beside your goal in the left sidebar!
 - Finished your goal? Click on the box beside your goal to add a checkmark and mark it as complete!
 
 ### Features
 ---
-- User can view today or tomorrow's goals.
 - "Goal streak" shows the user how many days in a row they have completed all goals.
+- User can view today or tomorrow's goals.
 - Progress bar and percentage dynamically change.
 - New quote for each day.
 - Have display change without reloading the page
